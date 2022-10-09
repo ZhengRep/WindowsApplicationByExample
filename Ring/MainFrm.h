@@ -8,11 +8,12 @@
 #include "OutputWnd.h"
 #include "PropertiesWnd.h"
 
-class CMainFrame : public CMDIFrameWndEx
+class CMainFrame : public CFrameWndEx
 {
-	DECLARE_DYNAMIC(CMainFrame)
-public:
+	
+protected: // create from serialization only
 	CMainFrame() noexcept;
+	DECLARE_DYNCREATE(CMainFrame)
 
 // Attributes
 public:
@@ -46,7 +47,6 @@ protected:  // control bar embedded members
 // Generated message map functions
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnWindowManager();
 	afx_msg void OnViewCustomize();
 	afx_msg LRESULT OnToolbarCreateNew(WPARAM wp, LPARAM lp);
 	afx_msg void OnApplicationLook(UINT id);

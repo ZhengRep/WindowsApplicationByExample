@@ -27,9 +27,6 @@
     <ClInclude Include="MainFrm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ChildFrm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RingDoc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -63,9 +60,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MainFrm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ChildFrm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RingDoc.cpp">

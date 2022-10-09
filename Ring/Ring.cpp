@@ -9,7 +9,6 @@
 #include "Ring.h"
 #include "MainFrm.h"
 
-#include "ChildFrm.h"
 #include "RingDoc.h"
 #include "RingView.h"
 
@@ -84,7 +83,7 @@ BOOL CRingApp::InitInstance()
 
 	AfxEnableControlContainer();
 
-	EnableTaskbarInteraction();
+	EnableTaskbarInteraction(FALSE);
 
 	// AfxInitRichEdit2() is required to use RichEdit control
 	// AfxInitRichEdit2();
@@ -112,28 +111,16 @@ BOOL CRingApp::InitInstance()
 
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views
-	CMultiDocTemplate* pDocTemplate;
-	pDocTemplate = new CMultiDocTemplate(IDR_RingTYPE,
+	CSingleDocTemplate* pDocTemplate;
+	pDocTemplate = new CSingleDocTemplate(
+		IDR_MAINFRAME,
 		RUNTIME_CLASS(CRingDoc),
-		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
+		RUNTIME_CLASS(CMainFrame),       // main SDI frame window
 		RUNTIME_CLASS(CRingView));
 	if (!pDocTemplate)
 		return FALSE;
 	AddDocTemplate(pDocTemplate);
 
-	// create main MDI Frame window
-	CMainFrame* pMainFrame = new CMainFrame;
-	if (!pMainFrame || !pMainFrame->LoadFrame(IDR_MAINFRAME))
-	{
-		delete pMainFrame;
-		return FALSE;
-	}
-	m_pMainWnd = pMainFrame;
-
-	// call DragAcceptFiles only if there's a suffix
-	//  In an MDI app, this should occur immediately after setting m_pMainWnd
-	// Enable drag/drop open
-	m_pMainWnd->DragAcceptFiles();
 
 	// Parse command line for standard shell commands, DDE, file open
 	CCommandLineInfo cmdInfo;
@@ -148,10 +135,14 @@ BOOL CRingApp::InitInstance()
 	// app was launched with /RegServer, /Register, /Unregserver or /Unregister.
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;
-	// The main window has been initialized, so show and update it
-	pMainFrame->ShowWindow(m_nCmdShow);
-	pMainFrame->UpdateWindow();
 
+	// The one and only window has been initialized, so show and update it
+	m_pMainWnd->ShowWindow(SW_SHOW);
+	m_pMainWnd->UpdateWindow();
+	// call DragAcceptFiles only if there's a suffix
+	//  In an SDI app, this should occur after ProcessShellCommand
+	// Enable drag/drop open
+	m_pMainWnd->DragAcceptFiles();
 	return TRUE;
 }
 

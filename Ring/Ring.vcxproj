@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{0101C423-6F81-453B-B3E2-C2899B19E565}</ProjectGuid>
+    <ProjectGuid>{D459E245-7B73-4906-88BE-E3CF018D036E}</ProjectGuid>
     <Keyword>MFCProj</Keyword>
     <RootNamespace>Ring</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
@@ -183,7 +183,6 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="ClassView.h" />
     <ClInclude Include="FileView.h" />
     <ClInclude Include="framework.h" />
@@ -199,7 +198,6 @@
     <ClInclude Include="ViewTree.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="ClassView.cpp" />
     <ClCompile Include="FileView.cpp" />
     <ClCompile Include="MainFrm.cpp" />

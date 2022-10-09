@@ -5,6 +5,13 @@
 
 #pragma once
 
+#include<afxtempl.h>
+typedef CArray<CPoint> PointArray;
+typedef CArray<COLORREF> ColorArray;
+
+static const COLORREF WHITE = RGB(255, 255, 255);
+static const COLORREF GREY = RGB(128, 128, 128);
+static const COLORREF BLACK = RGB(0, 0, 0);
 
 class CRingDoc : public CDocument
 {
@@ -45,4 +52,8 @@ protected:
 	// Helper function that sets search content for a Search Handler
 	void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
+
+private:
+	PointArray m_pointArray;
+	ColorArray m_colorArray;
 };
