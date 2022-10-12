@@ -52,6 +52,12 @@ protected:
 	// Helper function that sets search content for a Search Handler
 	void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
+	
+public:
+	void MouseDown(CPoint point);
+	PointArray& GetPointArray() { return m_pointArray; };
+	ColorArray& GetColorArray() { return m_colorArray; };
+
 
 private:
 	PointArray m_pointArray;

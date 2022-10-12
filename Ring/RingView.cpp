@@ -29,6 +29,7 @@ BEGIN_MESSAGE_MAP(CRingView, CScrollView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CRingView::OnFilePrintPreview)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
+	ON_WM_LBUTTONDOWN()
 END_MESSAGE_MAP()
 
 // CRingView construction/destruction
@@ -53,7 +54,7 @@ BOOL CRingView::PreCreateWindow(CREATESTRUCT& cs)
 
 // CRingView drawing
 
-void CRingView::OnDraw(CDC* /*pDC*/)
+void CRingView::OnDraw(CDC* pDC/*pDC*/)
 {
 	CRingDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
@@ -61,6 +62,23 @@ void CRingView::OnDraw(CDC* /*pDC*/)
 		return;
 
 	// TODO: add draw code for native data here
+	PointArray& pointArray = pDoc->GetPointArray();
+	ColorArray& colorArray = pDoc->GetColorArray();
+
+	int iSize = (int)pointArray.GetSize();
+	for (int i = 0; i < iSize; i++)
+	{
+		CPoint point = pointArray[i];
+		COLORREF color = colorArray[i];
+
+		CPen pen(PS_SOLID, 0, BLACK);
+		CBrush brush(color);
+
+		pDC->Ellipse(point.x - 50, point.y - 50, point.x + 50, point.y + 50);
+
+		CPen* pOldPen = pDC->SelectObject(&pen);
+		CBrush* pOldBrush = pDC->SelectObject(&brush);
+	}
 }
 
 void CRingView::OnInitialUpdate()
@@ -111,6 +129,15 @@ void CRingView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
 #ifndef SHARED_HANDLERS
 	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
 #endif
+}
+
+void CRingView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	CRingDoc* pDoc = GetDocument();
+	ASSERT_VALID(pDoc);
+	pDoc->MouseDown(point);
+
+	CScrollView::OnLButtonDown(nFlags, point);
 }
 
 

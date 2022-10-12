@@ -119,8 +119,15 @@ void CRingDoc::SetSearchContent(const CString& value)
 	}
 }
 
+
 #endif // SHARED_HANDLERS
 
+void CRingDoc::MouseDown(CPoint point)
+{
+	m_pointArray.Add(point);
+	m_colorArray.Add(WHITE);
+	UpdateAllViews(NULL);
+}
 // CRingDoc diagnostics
 
 #ifdef _DEBUG
