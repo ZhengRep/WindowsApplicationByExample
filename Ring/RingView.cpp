@@ -30,6 +30,7 @@ BEGIN_MESSAGE_MAP(CRingView, CScrollView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
 	ON_WM_LBUTTONDOWN()
+	ON_WM_KEYDOWN()
 END_MESSAGE_MAP()
 
 // CRingView construction/destruction
@@ -74,10 +75,11 @@ void CRingView::OnDraw(CDC* pDC/*pDC*/)
 		CPen pen(PS_SOLID, 0, BLACK);
 		CBrush brush(color);
 
-		pDC->Ellipse(point.x - 50, point.y - 50, point.x + 50, point.y + 50);
-
 		CPen* pOldPen = pDC->SelectObject(&pen);
 		CBrush* pOldBrush = pDC->SelectObject(&brush);
+
+		pDC->Ellipse(point.x - RADIUS, point.y - RADIUS, point.x + RADIUS, point.y + RADIUS);
+
 	}
 }
 
@@ -85,10 +87,12 @@ void CRingView::OnInitialUpdate()
 {
 	CScrollView::OnInitialUpdate();
 
-	CSize sizeTotal;
+	CSize sizeTotal(216000, 279000);
 	// TODO: calculate the total size of this view
-	sizeTotal.cx = sizeTotal.cy = 100;
-	SetScrollSizes(MM_TEXT, sizeTotal);
+	CSize  sizeLine(500, 500);
+	CSize sizePage(5000, 5000);
+	
+	SetScrollSizes(MM_TEXT, sizeTotal, sizePage, sizeLine);
 }
 
 
@@ -135,11 +139,48 @@ void CRingView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	CRingDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
+
+	CClientDC dc(this);
+	OnPrepareDC(&dc);
+	dc.DPtoLP(&point);
+
 	pDoc->MouseDown(point);
 
 	CScrollView::OnLButtonDown(nFlags, point);
 }
 
+void CRingView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	switch (nChar)
+	{
+	case VK_UP:
+		OnVScroll(SB_LINEUP, 0, NULL);
+		break;
+	case VK_DOWN:
+		OnVScroll(SB_LINEDOWN, 0, NULL);
+		break;
+	case VK_PRIOR:
+		OnVScroll(SB_PAGEUP, 0, NULL);
+		break;
+	case VK_NEXT:
+		OnVScroll(SB_PAGEDOWN, 0, NULL);
+		break;
+	case VK_LEFT:
+		OnHScroll(SB_LINELEFT, 0, NULL);
+		break;
+	case VK_RIGHT:
+		OnHScroll(SB_LINERIGHT, 0, NULL);
+		break;
+	case VK_HOME:
+		OnHScroll(SB_LEFT, 0, NULL);	
+		break;
+	case VK_END:
+		OnHScroll(SB_RIGHT, 0, NULL);
+		break;
+	default:
+		break;
+	}
+}
 
 // CRingView diagnostics
 

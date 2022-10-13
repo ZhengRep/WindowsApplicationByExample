@@ -12,6 +12,9 @@ typedef CArray<COLORREF> ColorArray;
 static const COLORREF WHITE = RGB(255, 255, 255);
 static const COLORREF GREY = RGB(128, 128, 128);
 static const COLORREF BLACK = RGB(0, 0, 0);
+static const COLORREF RED = RGB(255, 0, 0);
+
+static const int RADIUS = 50;
 
 class CRingDoc : public CDocument
 {
@@ -46,6 +49,8 @@ protected:
 
 // Generated message map functions
 protected:
+	afx_msg void OnColorRed();
+	afx_msg void OnColorDialog();
 	DECLARE_MESSAGE_MAP()
 
 #ifdef SHARED_HANDLERS
@@ -62,4 +67,5 @@ public:
 private:
 	PointArray m_pointArray;
 	ColorArray m_colorArray;
+	COLORREF m_nextColor;
 };

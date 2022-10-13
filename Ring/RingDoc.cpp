@@ -24,6 +24,8 @@
 IMPLEMENT_DYNCREATE(CRingDoc, CDocument)
 
 BEGIN_MESSAGE_MAP(CRingDoc, CDocument)
+	ON_COMMAND(ID_BUTTON_COLORRED, OnColorRed)
+	ON_COMMAND(ID_BUTTON_COLORDIALOG, OnColorDialog)
 END_MESSAGE_MAP()
 
 
@@ -32,11 +34,13 @@ END_MESSAGE_MAP()
 CRingDoc::CRingDoc() noexcept
 {
 	// TODO: add one-time construction code here
+	m_nextColor = AfxGetApp()->GetProfileInt(_T("Ring"), _T("Color"), WHITE);
 
 }
 
 CRingDoc::~CRingDoc()
 {
+	AfxGetApp()->WriteProfileInt(_T("Ring"), _T("Color"), m_nextColor);
 }
 
 BOOL CRingDoc::OnNewDocument()
@@ -57,13 +61,18 @@ BOOL CRingDoc::OnNewDocument()
 
 void CRingDoc::Serialize(CArchive& ar)
 {
+	m_colorArray.Serialize(ar);
+	m_pointArray.Serialize(ar);
+
 	if (ar.IsStoring())
 	{
 		// TODO: add storing code here
+		ar << m_nextColor;
 	}
 	else
 	{
 		// TODO: add loading code here
+		ar >> m_nextColor;
 	}
 }
 
@@ -101,6 +110,8 @@ void CRingDoc::InitializeSearchContent()
 	SetSearchContent(strSearchContent);
 }
 
+
+
 void CRingDoc::SetSearchContent(const CString& value)
 {
 	if (value.IsEmpty())
@@ -122,10 +133,27 @@ void CRingDoc::SetSearchContent(const CString& value)
 
 #endif // SHARED_HANDLERS
 
+void CRingDoc::OnColorRed()
+{
+	m_nextColor = RED;
+}
+
+void CRingDoc::OnColorDialog()
+{
+	CColorDialog colorDialog(m_nextColor);
+	if (colorDialog.DoModal() == IDOK)
+	{
+		m_nextColor = colorDialog.GetColor();
+	}
+}
+
 void CRingDoc::MouseDown(CPoint point)
 {
 	m_pointArray.Add(point);
-	m_colorArray.Add(WHITE);
+	m_colorArray.Add(m_nextColor);
+
+	SetModifiedFlag(TRUE);
+
 	UpdateAllViews(NULL);
 }
 // CRingDoc diagnostics
