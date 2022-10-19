@@ -5,6 +5,8 @@
 
 #pragma once
 
+typedef CList<int> IntList;
+const int FIGURE_ARRAY_SIZE = 7;
 
 class CTetrisDoc : public CDocument
 {
@@ -45,4 +47,37 @@ protected:
 	// Helper function that sets search content for a Search Handler
 	void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
+
+public:
+	void SaveScoreList();
+
+	int GetScore() const { return m_iScore; };
+
+	const IntList* GetScoreList() { return &m_scoreList; };
+	const ColorGrid* GetGrid() { return &m_colorGrid; };
+	const Figure& GetActiveFigure() const { return m_activeFigure; };
+	const Figure& GetNextFigure() const { return m_nextFigure; };
+
+public:
+	void LeftArrowKey();
+	void RightArrowKey();
+	void UpArrowKey();
+	void DownArrowKey();
+	BOOL Timer();
+	void SpaceKey();
+
+private:
+	void GameOver();
+	BOOL NewGame();
+	int AddScoreToList();
+	void DeleteFullRows();
+	BOOL isRowFull(int iRow);
+	void FlashRow(int iFlashRow);
+	void DeleteRow(int iDeleteRow);
+
+private:
+	int m_iScore;
+	IntList m_scoreList;
+	ColorGrid m_colorGrid;
+	Figure m_activeFigure, m_nextFigure;
 };

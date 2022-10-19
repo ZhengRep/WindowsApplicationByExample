@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="View">
+      <UniqueIdentifier>{1b56afc5-fbc9-445f-b8b2-a55b44887a6e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tetris.h">
@@ -25,12 +28,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MainFrm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TetrisDoc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TetrisView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
@@ -54,18 +51,27 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TetrisView.h">
+      <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="TetrisDoc.h">
+      <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="Square.h">
+      <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure.h">
+      <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorGrid.h">
+      <Filter>View</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tetris.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MainFrm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TetrisDoc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TetrisView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FileView.cpp">
@@ -85,6 +91,21 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TetrisView.cpp">
+      <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="TetrisDoc.cpp">
+      <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="Square.cpp">
+      <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="Figure.cpp">
+      <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorGrid.cpp">
+      <Filter>View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

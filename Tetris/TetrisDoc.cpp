@@ -135,4 +135,64 @@ void CTetrisDoc::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
+
+void CTetrisDoc::SaveScoreList()
+{
+}
 // CTetrisDoc commands
+
+void CTetrisDoc::LeftArrowKey()
+{
+}
+
+void CTetrisDoc::RightArrowKey()
+{
+}
+
+void CTetrisDoc::UpArrowKey()
+{
+}
+
+void CTetrisDoc::DownArrowKey()
+{
+}
+
+BOOL CTetrisDoc::Timer()
+{
+	return 0;
+}
+
+void CTetrisDoc::SpaceKey()
+{
+}
+
+void CTetrisDoc::GameOver()
+{
+}
+
+BOOL CTetrisDoc::NewGame()
+{
+	return 0;
+}
+
+int CTetrisDoc::AddScoreToList()
+{
+	return 0;
+}
+
+void CTetrisDoc::DeleteFullRows()
+{
+}
+
+BOOL CTetrisDoc::isRowFull(int iRow)
+{
+	return 0;
+}
+
+void CTetrisDoc::FlashRow(int iFlashRow)
+{
+}
+
+void CTetrisDoc::DeleteRow(int iDeleteRow)
+{
+}
