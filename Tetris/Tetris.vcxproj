@@ -186,6 +186,7 @@
     <ClInclude Include="ClassView.h" />
     <ClInclude Include="ColorGrid.h" />
     <ClInclude Include="Figure.h" />
+    <ClInclude Include="FigureInfo.h" />
     <ClInclude Include="FileView.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MainFrm.h" />
@@ -204,6 +205,7 @@
     <ClCompile Include="ClassView.cpp" />
     <ClCompile Include="ColorGrid.cpp" />
     <ClCompile Include="Figure.cpp" />
+    <ClCompile Include="FigureInfo.cpp" />
     <ClCompile Include="FileView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="OutputWnd.cpp" />

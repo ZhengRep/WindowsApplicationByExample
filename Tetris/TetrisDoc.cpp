@@ -18,6 +18,9 @@
 #define new DEBUG_NEW
 #endif
 
+Figure redFigue(NORTH, RED, RedInfo);
+
+
 // CTetrisDoc
 
 IMPLEMENT_DYNCREATE(CTetrisDoc, CDocument)

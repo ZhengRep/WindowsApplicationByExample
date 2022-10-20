@@ -66,6 +66,9 @@
     <ClInclude Include="ColorGrid.h">
       <Filter>View</Filter>
     </ClInclude>
+    <ClInclude Include="FigureInfo.h">
+      <Filter>View</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tetris.cpp">
@@ -105,6 +108,9 @@
       <Filter>View</Filter>
     </ClCompile>
     <ClCompile Include="ColorGrid.cpp">
+      <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="FigureInfo.cpp">
       <Filter>View</Filter>
     </ClCompile>
   </ItemGroup>

@@ -80,4 +80,6 @@ private:
 	IntList m_scoreList;
 	ColorGrid m_colorGrid;
 	Figure m_activeFigure, m_nextFigure;
+	const CRect NEXT_AREA, SCORE_AREA;
+	static Figure m_figureArray[FIGURE_ARRAY_SIZE];
 };

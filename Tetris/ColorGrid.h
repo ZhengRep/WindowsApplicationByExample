@@ -16,7 +16,6 @@ public:
 	void Serialize(CArchive& archive);
 
 private:
-	COLORREF m_buffer[ROWS * COLS];
-
+	COLORREF m_buffer[ROWS][COLS];
 };
 

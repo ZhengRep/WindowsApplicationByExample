@@ -67,14 +67,19 @@ void CRingDoc::Serialize(CArchive& ar)
 	if (ar.IsStoring())
 	{
 		// TODO: add storing code here
-		ar << m_nextColor;
+		ar << m_nextColor; //to store << extraction
 	}
 	else
 	{
 		// TODO: add loading code here
-		ar >> m_nextColor;
+		ar >> m_nextColor; //to load >> insertion
 	}
 }
+
+/*
+cin  >> extraction
+cout <<  insertion
+*/
 
 #ifdef SHARED_HANDLERS
 
