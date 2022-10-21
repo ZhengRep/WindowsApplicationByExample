@@ -110,9 +110,6 @@
     <ClCompile Include="ColorGrid.cpp">
       <Filter>View</Filter>
     </ClCompile>
-    <ClCompile Include="FigureInfo.cpp">
-      <Filter>View</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Tetris.reg" />

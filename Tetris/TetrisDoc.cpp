@@ -19,6 +19,14 @@
 #endif
 
 Figure redFigue(NORTH, RED, RedInfo);
+Figure brownFigue(EAST, BROWN, BrownInfo);
+Figure turqoiseFigure(EAST, TURQUOISE, TurquoiseInfo);
+Figure greenFigure(EAST, GREEN, GreenInfo);
+Figure yellowFigure(SOUTH, YELLOW, YellowInfo);
+Figure blueFigure(SOUTH, BLUE, BlueInfo);
+Figure purpleFigure(SOUTH, PURPLE, PurpleInfo);
+
+Figure CTetrisDoc::m_figureArray[] = { redFigue, brownFigue, turqoiseFigure, greenFigure, yellowFigure, blueFigure, purpleFigure };
 
 
 // CTetrisDoc
@@ -146,6 +154,7 @@ void CTetrisDoc::SaveScoreList()
 
 void CTetrisDoc::LeftArrowKey()
 {
+	CRect rcOldArea = m_activeFigure.GetArea();
 }
 
 void CTetrisDoc::RightArrowKey()

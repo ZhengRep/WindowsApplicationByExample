@@ -12,5 +12,6 @@
 #include "ColorGrid.h"
 #include "Figure.h"
 #include "Square.h"
+#include "FigureInfo.h"
 
 #endif //PCH_H

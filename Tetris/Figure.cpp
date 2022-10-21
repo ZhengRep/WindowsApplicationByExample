@@ -1,2 +1,150 @@
 #include "pch.h"
 #include "Figure.h"
+
+Figure::Figure()
+{
+}
+
+Figure::Figure(int iDerection, COLORREF rfColor, const SquareInfo& squareInfo)
+    :m_iRow(0),
+    m_iCol(COLS / 2),
+    m_iDirection(iDerection),
+    m_rfColor(rfColor),
+    m_pColorGrid(NULL)
+{
+    memcpy(&m_squareInfo, squareInfo, sizeof(m_squareInfo));
+}
+
+Figure Figure::operator=(const Figure& figure)
+{
+    return Figure();
+}
+
+BOOL Figure::IsSquareValid(int iRow, int iCol) const
+{
+    return (iRow >= 0 && iRow < ROWS) && (iCol >= 0 && iCol < COLS) && (m_pColorGrid->Index(iRow, iCol) == DEFAULT_COLOR);
+}
+
+BOOL Figure::IsFigureValid() const
+{
+    SquareArray* pSquareArray = (SquareArray*)(&m_squareInfo[m_iDirection]);
+
+    for (int index = 0; index < SQUARE_INFO_SIZE; index++)
+    {
+        Square& square = *pSquareArray[index];
+
+        if (!IsSquareValid(m_iRow + square.Row(), m_iCol + square.Col())) return FALSE;
+    }
+    return TRUE;
+}
+
+BOOL Figure::MoveLeft()
+{
+    --m_iCol;
+    if (IsFigureValid()) return TRUE;
+    else {
+        ++m_iCol;
+        return FALSE;
+    }
+}
+
+BOOL Figure::MoveRight()
+{
+    ++m_iCol;
+    if (IsFigureValid()) return TRUE;
+    else {
+        --m_iCol;
+        return FALSE;
+    }
+}
+
+void Figure::RotateClockwiseOneQuarter()
+{
+    switch (m_iDirection)
+    {
+    case NORTH:
+        m_iDirection = EAST;
+        break;
+    case EAST:
+        m_iDirection = SOUTH;
+        break;
+    case SOUTH:
+        m_iDirection = WEST;
+        break;
+    case WEST:
+        m_iDirection = NORTH;
+        break;
+    }
+}
+
+void Figure::RotateCounterclockwiseOneQuarter()
+{
+	switch (m_iDirection)
+	{
+	case NORTH:
+		m_iDirection = WEST;
+		break;
+	case EAST:
+		m_iDirection = NORTH;
+		break;
+	case SOUTH:
+		m_iDirection = EAST;
+		break;
+	case WEST:
+		m_iDirection = SOUTH;
+		break;
+	}
+}
+
+BOOL Figure::MoveDown()
+{
+
+}
+
+void Figure::AddToGrid()
+{
+    SquareArray* pSquareArray = m_squareInfo[m_iDirection];
+
+    for (int index = 0; index < SQUARE_ARRAY_RIZE; index++)
+    {
+        Square& square = *pSquareArray[index];
+        m_pColorGrid->Index(m_iRow + square.Row(), m_iCol + square.Col()) = m_rfColor;
+    }
+}
+
+void Figure::Draw(int iColorStatus, CDC* pDc) const
+{
+    CPen pen(PS_SOLID, 0, BLACK);
+    CPen* pOldPen = pDc->SelectObject(&pen);
+
+    CBrush brush((iColorStatus == COLOR) ? m_rfColor : GrayScale(m_rfColor));
+
+}
+
+CRect Figure::GetArea() const
+{
+    int iMinRow = 0, iMaxRow = 0, iMinCol = 0, iMaxCol = 0;
+    SquareArray* pSquareArray = (SquareArray*)&m_squareInfo[m_iDirection];
+
+    for (int index = 0; index < SQUARE_ARRAY_RIZE; index++)
+    {
+        Square& square = *pSquareArray[index];
+        int iRow = square.Row();
+        iMinRow = (iRow < iMinRow) ? iRow : iMinRow;
+        iMinRow = (iRow < iMaxRow) ? iMaxRow : iRow;
+
+        int iCol = square.Col();
+        iMinCol = (iCol < iMinCol) ? iCol : iMinCol;
+        iMaxCol = (iCol < iMaxCol) ? iMaxCol : iCol;
+    }
+
+    return CRect(m_iCol + iMinCol, m_iRow + iMinRow, m_iCol + iMaxCol, m_iRow + iMaxRow);
+}
+
+void Figure::Serialize(CArchive& ar)
+{
+}
+
+void DrawSquare(int iRow, int iCol, CDC* pDC)
+{
+}

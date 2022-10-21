@@ -66,7 +66,7 @@ SquareArray YellowSouth = { Square(0,0), Square(0, 1),
 						   Square(1, 0), Square(0, -1) };
 SquareArray YellowWest = { Square(0,0), Square(-1, 0),
 						   Square(1, 0), Square(0, -1) };
-SquareInfo RedInfo = { &YellowNorth, &YellowEast,
+SquareInfo YellowInfo = { &YellowNorth, &YellowEast,
 					  &YellowSouth, &YellowWest };
 
 /*
@@ -81,7 +81,7 @@ SquareArray BlueSouth = { Square(0,0), Square(0, 1),
 						   Square(0, 2), Square(1, 0) };
 SquareArray BlueWest = { Square(0,0), Square(1, 0),
 						   Square(2, 0), Square(0, -1) };
-SquareInfo RedInfo = { &BlueNorth, &BlueEast,
+SquareInfo BlueInfo = { &BlueNorth, &BlueEast,
 					  &BlueSouth, &BlueWest };
 
 /*
@@ -96,7 +96,7 @@ SquareArray PurpleSouth = { Square(0,0), Square(1, 0),
 						   Square(0, -1), Square(0, -2)};
 SquareArray PurpleWest = { Square(0,0), Square(0, -1),
 						   Square(-1, 0), Square(-2, 0) };
-SquareInfo RedInfo = { &PurpleNorth, &PurpleEast,
+SquareInfo PurpleInfo = { &PurpleNorth, &PurpleEast,
 					  &PurpleSouth, &PurpleWest };
 
 

@@ -205,7 +205,6 @@
     <ClCompile Include="ClassView.cpp" />
     <ClCompile Include="ColorGrid.cpp" />
     <ClCompile Include="Figure.cpp" />
-    <ClCompile Include="FigureInfo.cpp" />
     <ClCompile Include="FileView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="OutputWnd.cpp" />
