@@ -126,3 +126,100 @@ CRingDoc::~CRingDoc()
 
 ## Tetris
 
+1. 七种方块
+
+```c
+/*
+  #  #
+  #  #
+*/
+SquareArray RedGeneric = { Square(0,0), Square(0, 1), 
+						   Square(1, 0), Square(1, 1) };
+SquareInfo RedInfo = { &RedGeneric, &RedGeneric,
+					  &RedGeneric, &RedGeneric };
+
+/*
+	#
+	#
+	#
+	#
+*/
+SquareArray BrownVertical = { Square(0,0), Square(-1, 0),
+						   Square(1, 0), Square(2, 0) };
+SquareArray BrownHorizontal = { Square(0,0), Square(0, -1),
+						   Square(0, 1), Square(0, 2) };
+SquareInfo BrownInfo = { &BrownVertical, &BrownHorizontal,
+						&BrownVertical, &BrownHorizontal };
+
+/*
+	#
+	#  #
+	   #
+*/
+SquareArray TurquoiseVertical = { Square(0,0), Square(-1, 0),
+						   Square(0, 1), Square(1, 1) };
+SquareArray TurquoiseHorizontal = { Square(0,0), Square(0, 1),
+						   Square(1, 0), Square(1, -1) };
+SquareInfo TurquoiseInfo = { &TurquoiseVertical, &TurquoiseHorizontal,
+							&TurquoiseVertical, &TurquoiseHorizontal };
+
+/*
+		#
+	#	#
+	#
+*/
+SquareArray GreenVertical = { Square(0,0), Square(-1, 0),
+						   Square(1, -1), Square(0, -1) };
+SquareArray GreenHorizontal = { Square(0,0), Square(-1, 0),
+						   Square(0, 1), Square(-1, -1) };
+SquareInfo GreenInfo = { &GreenVertical, &GreenHorizontal,
+							&GreenVertical, &GreenHorizontal };
+
+/*
+	 #
+  #  #   #
+*/
+SquareArray YellowNorth = { Square(0,0), Square(-1, 0),
+						   Square(0, 1), Square(0, -1) };
+SquareArray YellowEast = { Square(0,0), Square(-1, 0),
+						   Square(0, 1), Square(1, 0) };
+SquareArray YellowSouth = { Square(0,0), Square(0, 1),
+						   Square(1, 0), Square(0, -1) };
+SquareArray YellowWest = { Square(0,0), Square(-1, 0),
+						   Square(1, 0), Square(0, -1) };
+SquareInfo YellowInfo = { &YellowNorth, &YellowEast,
+					  &YellowSouth, &YellowWest };
+
+/*
+		#
+#	#	#
+*/
+SquareArray BlueNorth = { Square(0,0), Square(-1, 0),
+						   Square(0, -1), Square(0, -2) };
+SquareArray BlueEast = { Square(0,0), Square(-1, 0),
+						   Square(-2, 0), Square(0, 1) };
+SquareArray BlueSouth = { Square(0,0), Square(0, 1),
+						   Square(0, 2), Square(1, 0) };
+SquareArray BlueWest = { Square(0,0), Square(1, 0),
+						   Square(2, 0), Square(0, -1) };
+SquareInfo BlueInfo = { &BlueNorth, &BlueEast,
+					  &BlueSouth, &BlueWest };
+
+/*
+#
+#	#	#
+*/
+SquareArray PurpleNorth = { Square(0,0), Square(-1, 0),
+						   Square(0, 1), Square(0, 2) };
+SquareArray PurpleEast = { Square(0,0), Square(0, 1),
+						   Square(1, 0), Square(2, 0) };
+SquareArray PurpleSouth = { Square(0,0), Square(1, 0),
+						   Square(0, -1), Square(0, -2)};
+SquareArray PurpleWest = { Square(0,0), Square(0, -1),
+						   Square(-1, 0), Square(-2, 0) };
+SquareInfo PurpleInfo = { &PurpleNorth, &PurpleEast,
+					  &PurpleSouth, &PurpleWest };
+
+
+```
+

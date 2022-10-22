@@ -12,6 +12,9 @@
 #include "ColorGrid.h"
 #include "Figure.h"
 #include "Square.h"
-#include "FigureInfo.h"
+#include "TetrisView.h"
+#include<exception>
+
+void check(BOOL valid);
 
 #endif //PCH_H

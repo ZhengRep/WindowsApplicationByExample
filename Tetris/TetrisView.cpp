@@ -18,6 +18,8 @@
 #endif
 
 
+int g_iRowHeight, g_iColWidth;
+
 // CTetrisView
 
 IMPLEMENT_DYNCREATE(CTetrisView, CView)
@@ -140,23 +142,48 @@ void CTetrisView::OnSize(UINT nType, int cx, int cy)
 
 void CTetrisView::OnSetFocus(CWnd* pOldWnd)
 {
+	SetTimer(0, 1000, NULL);
 }
 
 void CTetrisView::OnKillFocus(CWnd* pNewWnd)
 {
+	KillTimer(0);
 }
 
 void CTetrisView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
+	switch (nChar)
+	{
+	case VK_UP:
+		m_pTetrisDoc->UpArrowKey();
+		break;
+	case VK_DOWN:
+		m_pTetrisDoc->DownArrowKey();
+		break;
+	case VK_LEFT:
+		m_pTetrisDoc->LeftArrowKey();
+		break;
+	case VK_RIGHT:
+		m_pTetrisDoc->RightArrowKey();
+		break;
+	case VK_SPACE:
+		m_pTetrisDoc->SpaceKey();
+		break;
+	default:
+		break;
+	}
 }
 
 void CTetrisView::OnTimer(UINT_PTR nIDEvent)
 {
+	if (!m_pTetrisDoc->Timer()) {
+		KillTimer(0);
+	}
 }
 
 void CTetrisView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 {
-	m_iColorStatus = lHint;
+	m_iColorStatus = (int)lHint;
 	if(pHint != NULL)
 	{
 		CRect rcArea = *(CRect*)pHint;
@@ -197,6 +224,13 @@ void CTetrisView::DrawScoreAndScoreList(CDC* pDC)
 
 void CTetrisView::DrawActiveAndNextFigure(CDC* pDC)
 {
+	const Figure activeFigure = m_pTetrisDoc->GetActiveFigure();
+	activeFigure.Draw(m_iColorStatus, pDC);
+
+	const Figure nextFigure = m_pTetrisDoc->GetNextFigure();
+	CPoint ptOrigin(-COLS * g_iColWidth, -g_iRowHeight);
+	pDC->SetWindowOrg(ptOrigin);
+	nextFigure.Draw(m_iColorStatus, pDC); //??
 }
 
 
@@ -225,5 +259,9 @@ CTetrisDoc* CTetrisView::GetDocument() const // non-debug version is inline
 
 COLORREF GrayScale(COLORREF color)
 {
-	return COLORREF();
+	int iRed = GetRValue(color);
+	int iGreen = GetGValue(color);
+	int iBlue = GetBValue(color);
+	int iAverage = (iRed + iGreen + iBlue) / 3;
+	return RGB(iAverage, iAverage, iAverage);
 }

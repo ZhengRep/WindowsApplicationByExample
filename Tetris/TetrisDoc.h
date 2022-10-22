@@ -23,7 +23,6 @@ public:
 // Overrides
 public:
 	virtual BOOL OnNewDocument();
-	virtual void Serialize(CArchive& ar);
 #ifdef SHARED_HANDLERS
 	virtual void InitializeSearchContent();
 	virtual void OnDrawThumbnail(CDC& dc, LPRECT lprcBounds);
@@ -50,6 +49,7 @@ protected:
 
 public:
 	void SaveScoreList();
+	void LoadScoreList();
 
 	int GetScore() const { return m_iScore; };
 
@@ -75,9 +75,11 @@ private:
 	void FlashRow(int iFlashRow);
 	void DeleteRow(int iDeleteRow);
 
+	void Serialize(CArchive& ar);
+
 private:
 	int m_iScore;
-	IntList m_scoreList;
+	IntList m_scoreList; //record top 10 score
 	ColorGrid m_colorGrid;
 	Figure m_activeFigure, m_nextFigure;
 	const CRect NEXT_AREA, SCORE_AREA;

@@ -5,24 +5,23 @@ const COLORREF WHITE = RGB(255, 255, 255);
 const COLORREF DEFAULT_COLOR = WHITE;
 
 class ColorGrid;
-extern int g_iRowHeight, g_iColWidth;
 
 enum {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
 
-const int SQUARE_ARRAY_RIZE = 4;
+const int SQUARE_ARRAY_SIZE = 4;
 const int SQUARE_INFO_SIZE = 4;
 
 // one figure have four square and saved in SquareArray
-typedef Square SquareArray[SQUARE_ARRAY_RIZE]; //one figure = four Square
+typedef Square SquareArray[SQUARE_ARRAY_SIZE]; //one figure = four Square
 
 //one square have 
 //north east south west
-typedef SquareArray SquareInfo[SQUARE_INFO_SIZE]; //squareinfo does have four deferent Figure
+typedef SquareArray* SquareInfo[SQUARE_INFO_SIZE]; //squareinfo does have four deferent Figure
 
 class Figure
 {
 public:
-	Figure();
+	Figure() {};
 	Figure(int iDerection, COLORREF rfColor, const SquareInfo& squareInfo);
 	Figure operator=(const Figure& figure);
 	void SetColorGrid(ColorGrid* pColorGrid) { m_pColorGrid = pColorGrid; };
@@ -46,10 +45,6 @@ public:
 public:
 	void Draw(int iColorStatus, CDC* pDc) const;
 	friend void DrawSquare(int iRow, int iCol, CDC* pDC);
-
-public:
-	void Serialize(CArchive& ar);
-
 
 private:
 	ColorGrid* m_pColorGrid;

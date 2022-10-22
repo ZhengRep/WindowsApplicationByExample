@@ -1,10 +1,6 @@
 #include "pch.h"
 #include "Figure.h"
 
-Figure::Figure()
-{
-}
-
 Figure::Figure(int iDerection, COLORREF rfColor, const SquareInfo& squareInfo)
     :m_iRow(0),
     m_iCol(COLS / 2),
@@ -17,7 +13,13 @@ Figure::Figure(int iDerection, COLORREF rfColor, const SquareInfo& squareInfo)
 
 Figure Figure::operator=(const Figure& figure)
 {
-    return Figure();
+    this->m_iRow = figure.m_iRow;
+    this->m_iCol = figure.m_iCol;
+    this->m_iDirection = figure.m_iDirection;
+    this->m_rfColor = figure.m_rfColor;
+    this->m_pColorGrid = figure.m_pColorGrid;
+    memcpy(&m_squareInfo, figure.m_squareInfo, sizeof(m_squareInfo));
+    return *this;
 }
 
 BOOL Figure::IsSquareValid(int iRow, int iCol) const
@@ -27,7 +29,7 @@ BOOL Figure::IsSquareValid(int iRow, int iCol) const
 
 BOOL Figure::IsFigureValid() const
 {
-    SquareArray* pSquareArray = (SquareArray*)(&m_squareInfo[m_iDirection]);
+    SquareArray* pSquareArray = m_squareInfo[m_iDirection];
 
     for (int index = 0; index < SQUARE_INFO_SIZE; index++)
     {
@@ -98,14 +100,19 @@ void Figure::RotateCounterclockwiseOneQuarter()
 
 BOOL Figure::MoveDown()
 {
-
+	++m_iRow;
+	if (IsFigureValid()) return TRUE;
+	else {
+		--m_iRow;
+		return FALSE;
+	}
 }
 
 void Figure::AddToGrid()
 {
     SquareArray* pSquareArray = m_squareInfo[m_iDirection];
 
-    for (int index = 0; index < SQUARE_ARRAY_RIZE; index++)
+    for (int index = 0; index < SQUARE_ARRAY_SIZE; index++)
     {
         Square& square = *pSquareArray[index];
         m_pColorGrid->Index(m_iRow + square.Row(), m_iCol + square.Col()) = m_rfColor;
@@ -124,9 +131,9 @@ void Figure::Draw(int iColorStatus, CDC* pDc) const
 CRect Figure::GetArea() const
 {
     int iMinRow = 0, iMaxRow = 0, iMinCol = 0, iMaxCol = 0;
-    SquareArray* pSquareArray = (SquareArray*)&m_squareInfo[m_iDirection];
+    SquareArray* pSquareArray = m_squareInfo[m_iDirection];
 
-    for (int index = 0; index < SQUARE_ARRAY_RIZE; index++)
+    for (int index = 0; index < SQUARE_ARRAY_SIZE; index++)
     {
         Square& square = *pSquareArray[index];
         int iRow = square.Row();
@@ -141,10 +148,7 @@ CRect Figure::GetArea() const
     return CRect(m_iCol + iMinCol, m_iRow + iMinRow, m_iCol + iMaxCol, m_iRow + iMaxRow);
 }
 
-void Figure::Serialize(CArchive& ar)
-{
-}
-
 void DrawSquare(int iRow, int iCol, CDC* pDC)
 {
+
 }

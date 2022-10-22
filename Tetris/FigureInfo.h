@@ -8,11 +8,12 @@ const COLORREF BLUE = RGB(0, 0, 255);
 const COLORREF PURPLE = RGB(255, 0, 255);
 const COLORREF YELLOW = RGB(255, 255, 0);
 
+
 /*
   #  #
   #  #
 */
-SquareArray RedGeneric = { Square(0,0), Square(0, 1), 
+SquareArray RedGeneric = { Square(0,0), Square(0, 1),
 						   Square(1, 0), Square(1, 1) };
 SquareInfo RedInfo = { &RedGeneric, &RedGeneric,
 					  &RedGeneric, &RedGeneric };
@@ -93,10 +94,9 @@ SquareArray PurpleNorth = { Square(0,0), Square(-1, 0),
 SquareArray PurpleEast = { Square(0,0), Square(0, 1),
 						   Square(1, 0), Square(2, 0) };
 SquareArray PurpleSouth = { Square(0,0), Square(1, 0),
-						   Square(0, -1), Square(0, -2)};
+						   Square(0, -1), Square(0, -2) };
 SquareArray PurpleWest = { Square(0,0), Square(0, -1),
 						   Square(-1, 0), Square(-2, 0) };
 SquareInfo PurpleInfo = { &PurpleNorth, &PurpleEast,
 					  &PurpleSouth, &PurpleWest };
-
 

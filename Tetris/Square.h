@@ -2,7 +2,6 @@
 class Square
 {
 public:
-	Square();
 	Square(int iRow, int iCol);
 
 	int Row() const { return m_iRow; };
