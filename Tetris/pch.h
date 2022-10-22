@@ -10,9 +10,6 @@
 // add headers that you want to pre-compile here
 #include "framework.h"
 #include "ColorGrid.h"
-#include "Figure.h"
-#include "Square.h"
-#include "TetrisView.h"
 #include<exception>
 
 void check(BOOL valid);

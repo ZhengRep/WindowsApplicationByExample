@@ -1,4 +1,6 @@
 #pragma once
+#include "TetrisView.h"
+#include "Figure.h"
 
 const int ROWS = 20;
 const int COLS = 20;

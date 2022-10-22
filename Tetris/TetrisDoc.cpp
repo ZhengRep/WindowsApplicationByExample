@@ -18,6 +18,8 @@
 #define new DEBUG_NEW
 #endif
 
+#include "FigureInfo.h"
+
 Figure redFigue(NORTH, RED, RedInfo);
 Figure brownFigue(EAST, BROWN, BrownInfo);
 Figure turqoiseFigure(EAST, TURQUOISE, TurquoiseInfo);

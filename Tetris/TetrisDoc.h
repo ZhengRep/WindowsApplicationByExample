@@ -4,6 +4,8 @@
 
 
 #pragma once
+#include "Figure.h"
+#include "TetrisView.h"
 
 typedef CList<int> IntList;
 const int FIGURE_ARRAY_SIZE = 7;

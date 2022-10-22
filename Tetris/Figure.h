@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Square.h"
+#include "TetrisView.h"
+
 const COLORREF BLACK = RGB(0, 0, 0);
 const COLORREF WHITE = RGB(255, 255, 255);
 const COLORREF DEFAULT_COLOR = WHITE;

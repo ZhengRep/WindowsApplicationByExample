@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Figure.h"
+
 const COLORREF RED = RGB(255, 0, 0);
 const COLORREF BROWN = RGB(255, 128, 0);
 const COLORREF TURQUOISE = RGB(0, 255, 255);
