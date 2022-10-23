@@ -217,7 +217,7 @@ BOOL CTetrisDoc::Timer()
 	else {
 		m_activeFigure.AddToGrid();
 		m_activeFigure = m_nextFigure;
-		m_nextFigure.SetColorGrid(&m_colorGrid);
+		m_activeFigure.SetColorGrid(&m_colorGrid);
 
 		CRect rcActiveArea = m_activeFigure.GetArea();
 		UpdateAllViews(NULL, COLOR, (CObject*)&rcActiveArea);
@@ -258,7 +258,7 @@ void CTetrisDoc::GameOver()
 
 BOOL CTetrisDoc::NewGame()
 {
-	return 0;
+	return 1;
 }
 
 int CTetrisDoc::AddScoreToList()

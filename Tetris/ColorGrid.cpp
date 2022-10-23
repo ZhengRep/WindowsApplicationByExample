@@ -26,14 +26,19 @@ void ColorGrid::Clear()
 COLORREF& ColorGrid::Index(int iRow, int iCol)
 {
 	// TODO: insert return statement here
-	check(iRow >= 0 && iRow < ROWS);
-	check(iCol >= 0 && iCol < COLS);
+	if (iRow > -2 && iRow < 0) {
+		COLORREF white = RGB(255, 255, 255);
+		return white;
+	}
 	return m_buffer[iRow][iCol];
 }
 
 const COLORREF ColorGrid::Index(int iRow, int iCol) const
 {
-	check(iRow >= 0 && iRow < ROWS);
-	check(iCol >= 0 && iCol < COLS);
+	//The figure shows above grid
+	if (iRow > -2 && iRow < 0) {
+		COLORREF white = RGB(255, 255, 255);
+		return white;
+	}
 	return m_buffer[iRow][iCol];
 }

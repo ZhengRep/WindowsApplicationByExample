@@ -194,7 +194,8 @@ void CTetrisView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 		rcArea.right *= g_iColWidth;
 		rcArea.top *= g_iRowHeight;
 		rcArea.bottom *= g_iRowHeight;
-		InvalidateRect(&rcArea);
+		//InvalidateRect(&rcArea, TRUE);
+		Invalidate(TRUE);
 	}
 	else {
 		Invalidate();

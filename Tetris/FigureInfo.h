@@ -46,8 +46,8 @@ SquareInfo TurquoiseInfo = { &TurquoiseVertical, &TurquoiseHorizontal,
 							&TurquoiseVertical, &TurquoiseHorizontal };
 
 /*
-		#
-	#	#
+		#  #  #
+	#	#     #   #
 	#
 */
 SquareArray GreenVertical = { Square(0,0), Square(-1, 0),

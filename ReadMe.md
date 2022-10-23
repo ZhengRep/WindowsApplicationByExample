@@ -128,6 +128,8 @@ CRingDoc::~CRingDoc()
 
 该应用主要实现了一个俄罗斯方块的小游戏。
 
+![image-20221023202414671](ReadMe.assets/image-20221023202414671.png)
+
 ### 实现
 
 #### 类分析
@@ -238,23 +240,3 @@ SquareInfo PurpleInfo = { &PurpleNorth, &PurpleEast,
 
 
 ```
-
-### Debug
-
-1. 数组访问异常
-
-![image-20221023112001076](ReadMe.assets/image-20221023112001076.png)
-
-pSquareArray 0x00007ff631f44e10
-
-pSquare1 0x00007ff631f44e10
-
-pSquare2 0x00007ff631f44e30
-
-pSquare3 0x00007ff631f44e50
-
-pSquare4 0x00007ff631f44e70
-
-x86：
-
-0x0079e8f8 0x0079e918
