@@ -24,7 +24,7 @@ typedef SquareArray* SquareInfo[SQUARE_INFO_SIZE]; //squareinfo does have four d
 class Figure
 {
 public:
-	Figure() {};
+	Figure();
 	Figure(int iDerection, COLORREF rfColor, const SquareInfo& squareInfo);
 	Figure operator=(const Figure& figure);
 	void SetColorGrid(ColorGrid* pColorGrid) { m_pColorGrid = pColorGrid; };

@@ -57,6 +57,7 @@ public:
 
 	const IntList* GetScoreList() { return &m_scoreList; };
 	const ColorGrid* GetGrid() { return &m_colorGrid; };
+
 	const Figure& GetActiveFigure() const { return m_activeFigure; };
 	const Figure& GetNextFigure() const { return m_nextFigure; };
 

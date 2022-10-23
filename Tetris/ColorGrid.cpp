@@ -2,8 +2,14 @@
 #include "ColorGrid.h"
 
 ColorGrid::ColorGrid()
-	:m_buffer{WHITE}
 {
+	for (int iRow = 0; iRow < ROWS; iRow++)
+	{
+		for (int iCol = 0; iCol < COLS; iCol++)
+		{
+			m_buffer[iRow][iCol] = WHITE;
+		}
+	}
 }
 
 void ColorGrid::Clear()

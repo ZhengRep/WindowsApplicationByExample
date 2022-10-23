@@ -6,7 +6,7 @@
 
 ![image-20221020150632086](ReadMe.assets/image-20221020150632086.png)
 
-该项目实现了在窗口中绘制圆形的功能，其中包含相关：
+该应用实现了在窗口中绘制圆形的功能，其中包含相关：
 
 1. 鼠标消息
 2. 序列化对象来保存绘制图形数据
@@ -126,7 +126,23 @@ CRingDoc::~CRingDoc()
 
 ## Tetris
 
-1. 七种方块
+该应用主要实现了一个俄罗斯方块的小游戏。
+
+### 实现
+
+#### 类分析
+
+游戏中主要有背景网格，网格上有方块，4个方块构成的图形。
+
+而根据MFC项目框架，只需要改变TetirsDoc、TetrisView，分别用来记录背景网格、图形的位置颜色信息和显示数据的界面。
+
+#### 实现
+
+1. 定义背景网格
+
+
+
+七种方块
 
 ```c
 /*
@@ -223,3 +239,22 @@ SquareInfo PurpleInfo = { &PurpleNorth, &PurpleEast,
 
 ```
 
+### Debug
+
+1. 数组访问异常
+
+![image-20221023112001076](ReadMe.assets/image-20221023112001076.png)
+
+pSquareArray 0x00007ff631f44e10
+
+pSquare1 0x00007ff631f44e10
+
+pSquare2 0x00007ff631f44e30
+
+pSquare3 0x00007ff631f44e50
+
+pSquare4 0x00007ff631f44e70
+
+x86：
+
+0x0079e8f8 0x0079e918

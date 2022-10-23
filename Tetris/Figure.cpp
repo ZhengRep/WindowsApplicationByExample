@@ -1,12 +1,15 @@
 #include "pch.h"
 #include "Figure.h"
 
+Figure::Figure()
+{
+}
+
 Figure::Figure(int iDerection, COLORREF rfColor, const SquareInfo& squareInfo)
     :m_iRow(0),
     m_iCol(COLS / 2),
     m_iDirection(iDerection),
-    m_rfColor(rfColor),
-    m_pColorGrid(NULL)
+    m_rfColor(rfColor)
 {
     memcpy(&m_squareInfo, squareInfo, sizeof(m_squareInfo));
 }
@@ -18,7 +21,7 @@ Figure Figure::operator=(const Figure& figure)
     this->m_iDirection = figure.m_iDirection;
     this->m_rfColor = figure.m_rfColor;
     this->m_pColorGrid = figure.m_pColorGrid;
-    memcpy(&m_squareInfo, figure.m_squareInfo, sizeof(m_squareInfo));
+    memcpy(this->m_squareInfo, figure.m_squareInfo, sizeof(m_squareInfo));
     return *this;
 }
 
@@ -29,13 +32,13 @@ BOOL Figure::IsSquareValid(int iRow, int iCol) const
 
 BOOL Figure::IsFigureValid() const
 {
-    SquareArray* pSquareArray = m_squareInfo[m_iDirection];
+	SquareArray* pSquareArray = m_squareInfo[m_iDirection];
 
     for (int index = 0; index < SQUARE_INFO_SIZE; index++)
     {
-        Square& square = *pSquareArray[index];
+        Square& pSquare = (*pSquareArray)[index]; // traversal is wrong
 
-        if (!IsSquareValid(m_iRow + square.Row(), m_iCol + square.Col())) return FALSE;
+        if (!IsSquareValid(m_iRow + pSquare.Row(), m_iCol + pSquare.Col())) return FALSE;
     }
     return TRUE;
 }
@@ -114,8 +117,8 @@ void Figure::AddToGrid()
 
     for (int index = 0; index < SQUARE_ARRAY_SIZE; index++)
     {
-        Square& square = *pSquareArray[index];
-        m_pColorGrid->Index(m_iRow + square.Row(), m_iCol + square.Col()) = m_rfColor;
+        Square& pSquare = (*pSquareArray)[index];
+        m_pColorGrid->Index(m_iRow + pSquare.Row(), m_iCol + pSquare.Col()) = m_rfColor;
     }
 }
 
@@ -135,7 +138,7 @@ CRect Figure::GetArea() const
 
     for (int index = 0; index < SQUARE_ARRAY_SIZE; index++)
     {
-        Square& square = *pSquareArray[index];
+        Square& square = (*pSquareArray)[index];
         int iRow = square.Row();
         iMinRow = (iRow < iMinRow) ? iRow : iMinRow;
         iMinRow = (iRow < iMaxRow) ? iMaxRow : iRow;

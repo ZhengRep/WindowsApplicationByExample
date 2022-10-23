@@ -28,7 +28,7 @@ Figure yellowFigure(SOUTH, YELLOW, YellowInfo);
 Figure blueFigure(SOUTH, BLUE, BlueInfo);
 Figure purpleFigure(SOUTH, PURPLE, PurpleInfo);
 
-Figure CTetrisDoc::m_figureArray[] = { redFigue, brownFigue, turqoiseFigure, greenFigure, yellowFigure, blueFigure, purpleFigure };
+Figure CTetrisDoc::m_figureArray[FIGURE_ARRAY_SIZE] = { redFigue, brownFigue, turqoiseFigure, greenFigure, yellowFigure, blueFigure, purpleFigure };
 
 
 // CTetrisDoc
@@ -45,7 +45,10 @@ CTetrisDoc::CTetrisDoc() noexcept
 {
 	// TODO: add one-time construction code here
 	//to load score list
-	m_iScore = 0;
+	m_activeFigure = m_figureArray[rand() % FIGURE_ARRAY_SIZE];
+	m_activeFigure.SetColorGrid(&m_colorGrid);
+
+	m_nextFigure = m_figureArray[rand() % FIGURE_ARRAY_SIZE];
 }
 
 CTetrisDoc::~CTetrisDoc()
@@ -214,6 +217,8 @@ BOOL CTetrisDoc::Timer()
 	else {
 		m_activeFigure.AddToGrid();
 		m_activeFigure = m_nextFigure;
+		m_nextFigure.SetColorGrid(&m_colorGrid);
+
 		CRect rcActiveArea = m_activeFigure.GetArea();
 		UpdateAllViews(NULL, COLOR, (CObject*)&rcActiveArea);
 		m_nextFigure = m_figureArray[rand() % FIGURE_ARRAY_SIZE];
@@ -240,6 +245,8 @@ void CTetrisDoc::GameOver()
 	if (NewGame()) {
 		m_colorGrid.Clear();
 		m_activeFigure = m_figureArray[rand() % FIGURE_ARRAY_SIZE];
+		m_activeFigure.SetColorGrid(&m_colorGrid);
+
 		m_nextFigure = m_figureArray[rand() % FIGURE_ARRAY_SIZE];
 		UpdateAllViews(NULL, COLOR);
 	}

@@ -64,6 +64,7 @@ BOOL CTetrisView::PreCreateWindow(CREATESTRUCT& cs)
 
 void CTetrisView::OnDraw(CDC* pDc /*pDC*/)
 {
+	m_iColorStatus = COLOR;
 	CTetrisDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 	if (!pDoc)
@@ -219,7 +220,8 @@ void CTetrisView::DrawGrid(CDC* pDC)
 
 void CTetrisView::DrawScoreAndScoreList(CDC* pDC)
 {
-
+	//to test paint
+	
 }
 
 void CTetrisView::DrawActiveAndNextFigure(CDC* pDC)
