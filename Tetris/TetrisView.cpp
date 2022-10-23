@@ -45,7 +45,7 @@ END_MESSAGE_MAP()
 CTetrisView::CTetrisView() noexcept
 {
 	// TODO: add construction code here
-
+	
 }
 
 CTetrisView::~CTetrisView()
@@ -132,6 +132,8 @@ int CTetrisView::OnCreate(LPCREATESTRUCT lpcs)
 	m_pTetrisDoc = (CTetrisDoc*)m_pDocument;
 	//check(m_pTetrisDoc != NULL);
 	ASSERT_VALID(m_pTetrisDoc);
+	
+	//start timer
 	return 0;
 }
 
@@ -220,7 +222,6 @@ void CTetrisView::DrawGrid(CDC* pDC)
 
 void CTetrisView::DrawScoreAndScoreList(CDC* pDC)
 {
-	//to test paint
 	
 }
 

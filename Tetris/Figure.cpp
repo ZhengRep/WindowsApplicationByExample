@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Figure.h"
 
+extern int g_iRowHeight, g_iColWidth;
+
 Figure::Figure()
 {
 }
@@ -129,6 +131,15 @@ void Figure::Draw(int iColorStatus, CDC* pDc) const
 
     CBrush brush((iColorStatus == COLOR) ? m_rfColor : GrayScale(m_rfColor));
 
+    CBrush* pOldBrush = pDc->SelectObject(&brush);
+    SquareArray* pSquareArray = m_squareInfo[m_iDirection];
+    for (int i = 0; i < SQUARE_ARRAY_SIZE; i++)
+    {
+        Square& sqaure = (*pSquareArray)[i];
+        DrawSquare(m_iRow + sqaure.Row(), m_iCol + sqaure.Col(), pDc);
+    }
+    pDc->SelectObject(&pOldBrush);
+    pDc->SelectObject(&pOldPen);
 }
 
 CRect Figure::GetArea() const
@@ -153,5 +164,5 @@ CRect Figure::GetArea() const
 
 void DrawSquare(int iRow, int iCol, CDC* pDC)
 {
-
+    pDC->Rectangle(iCol * g_iColWidth, iRow * g_iRowHeight, (iCol + 1) * g_iColWidth, (iRow + 1) * g_iRowHeight);
 }
