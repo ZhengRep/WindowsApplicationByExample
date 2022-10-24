@@ -224,7 +224,7 @@ BOOL CTetrisDoc::Timer()
 		m_nextFigure = m_figureArray[rand() % FIGURE_ARRAY_SIZE];
 		UpdateAllViews(NULL, COLOR, (CObject*)&NEXT_AREA);
 		DeleteFullRows();
-		if (!m_activeFigure.IsFigureValid()) {
+		if (!m_activeFigure.IsFigureValid()) { //is full
 			GameOver();
 		}
 		return FALSE;
@@ -258,12 +258,31 @@ void CTetrisDoc::GameOver()
 
 BOOL CTetrisDoc::NewGame()
 {
-	return 1;
+	CString showMsg;
+	int rank;
+	if ((rank = AddScoreToList()) != 0) {
+		showMsg.Format(TEXT("Get new score!\nCurrent score %d rank %d!\nNew game again?"), m_iScore, rank);
+	}
+	else {
+		showMsg.Format(TEXT("Current score is: %d.\n New game again?"), m_iScore);
+	}
+	if (MessageBox(NULL, showMsg, TEXT("Tetris"), MB_YESNO) == IDOK) return TRUE;
+	return FALSE;
 }
 
+
+//return rank
 int CTetrisDoc::AddScoreToList()
 {
-	return 0;
+	int size = m_scoreList.GetCount();
+	int i;
+	if (size <= 2) { //to test
+		//sorted add to score list
+		
+	}
+	else {
+		
+	}
 }
 
 void CTetrisDoc::DeleteFullRows()

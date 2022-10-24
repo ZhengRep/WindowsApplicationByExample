@@ -179,9 +179,7 @@ void CTetrisView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CTetrisView::OnTimer(UINT_PTR nIDEvent)
 {
-	if (!m_pTetrisDoc->Timer()) {
-		KillTimer(0);
-	}
+	m_pTetrisDoc->Timer();
 }
 
 void CTetrisView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)

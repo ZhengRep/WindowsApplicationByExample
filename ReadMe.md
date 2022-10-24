@@ -142,14 +142,22 @@ CRingDoc::~CRingDoc()
 
 1. 定义背景网格
 
+定义了20Row * 20Col的网格，每个网格是COLORREF的数组，可以获取和设置每个网格的颜色。
 
+2. 定义方块
 
-七种方块
+一个方块其实就是一个网格，方块组成移动的图形。
+
+3. 七种图形
+
+每个图形由四个方块组成，通过定义中心坐标方块（0，0），和其他方块的相对坐标，来标识每一个图形。
+
+并且通过一个图形数组来记录不同旋转方向的图形的信息。
 
 ```c
 /*
-  #  #
-  #  #
+  #*  #
+  #   #
 */
 SquareArray RedGeneric = { Square(0,0), Square(0, 1), 
 						   Square(1, 0), Square(1, 1) };
@@ -158,7 +166,7 @@ SquareInfo RedInfo = { &RedGeneric, &RedGeneric,
 
 /*
 	#
-	#
+	#*
 	#
 	#
 */
@@ -171,8 +179,8 @@ SquareInfo BrownInfo = { &BrownVertical, &BrownHorizontal,
 
 /*
 	#
-	#  #
-	   #
+	# * #
+	    #
 */
 SquareArray TurquoiseVertical = { Square(0,0), Square(-1, 0),
 						   Square(0, 1), Square(1, 1) };
@@ -183,7 +191,7 @@ SquareInfo TurquoiseInfo = { &TurquoiseVertical, &TurquoiseHorizontal,
 
 /*
 		#
-	#	#
+	#	#*
 	#
 */
 SquareArray GreenVertical = { Square(0,0), Square(-1, 0),
@@ -195,7 +203,7 @@ SquareInfo GreenInfo = { &GreenVertical, &GreenHorizontal,
 
 /*
 	 #
-  #  #   #
+  #  #*  #
 */
 SquareArray YellowNorth = { Square(0,0), Square(-1, 0),
 						   Square(0, 1), Square(0, -1) };
@@ -210,33 +218,35 @@ SquareInfo YellowInfo = { &YellowNorth, &YellowEast,
 
 /*
 		#
-#	#	#
+#	#*	#
 */
-SquareArray BlueNorth = { Square(0,0), Square(-1, 0),
-						   Square(0, -1), Square(0, -2) };
+SquareArray BlueNorth = { Square(0,0), Square(-1, 1),
+						   Square(0, 1), Square(0, -1) };
 SquareArray BlueEast = { Square(0,0), Square(-1, 0),
-						   Square(-2, 0), Square(0, 1) };
+						   Square(1, 0), Square(1, 1) };
 SquareArray BlueSouth = { Square(0,0), Square(0, 1),
-						   Square(0, 2), Square(1, 0) };
-SquareArray BlueWest = { Square(0,0), Square(1, 0),
-						   Square(2, 0), Square(0, -1) };
+						   Square(0, -1), Square(1, -1) };
+SquareArray BlueWest = { Square(0,0), Square(-1, 0),
+						   Square(-1, -1), Square(1, 0) };
 SquareInfo BlueInfo = { &BlueNorth, &BlueEast,
 					  &BlueSouth, &BlueWest };
 
 /*
 #
-#	#	#
+#	#*	#
 */
-SquareArray PurpleNorth = { Square(0,0), Square(-1, 0),
-						   Square(0, 1), Square(0, 2) };
-SquareArray PurpleEast = { Square(0,0), Square(0, 1),
-						   Square(1, 0), Square(2, 0) };
-SquareArray PurpleSouth = { Square(0,0), Square(1, 0),
-						   Square(0, -1), Square(0, -2)};
-SquareArray PurpleWest = { Square(0,0), Square(0, -1),
-						   Square(-1, 0), Square(-2, 0) };
+SquareArray PurpleNorth = { Square(0,0), Square(-1, -1),
+						   Square(0, -1), Square(0, 1) };
+SquareArray PurpleEast = { Square(0,0), Square(-1, 0),
+						   Square(-1, 1), Square(1, 0) };
+SquareArray PurpleSouth = { Square(0,0), Square(0, 1),
+						   Square(1, 1), Square(0, -1)};
+SquareArray PurpleWest = { Square(0,0), Square(-1, 0),
+						   Square(1, 0), Square(1, -1) };
 SquareInfo PurpleInfo = { &PurpleNorth, &PurpleEast,
 					  &PurpleSouth, &PurpleWest };
 
 
 ```
+
+4. 还未完成计分，分数显示，开始新游戏

@@ -10,10 +10,9 @@ const COLORREF BLUE = RGB(0, 0, 255);
 const COLORREF PURPLE = RGB(255, 0, 255);
 const COLORREF YELLOW = RGB(255, 255, 0);
 
-
 /*
-  #  #
-  #  #
+  #*  #
+  #   #
 */
 SquareArray RedGeneric = { Square(0,0), Square(0, 1),
 						   Square(1, 0), Square(1, 1) };
@@ -22,7 +21,7 @@ SquareInfo RedInfo = { &RedGeneric, &RedGeneric,
 
 /*
 	#
-	#
+	#*
 	#
 	#
 */
@@ -35,8 +34,8 @@ SquareInfo BrownInfo = { &BrownVertical, &BrownHorizontal,
 
 /*
 	#
-	#  #
-	   #
+	# * #
+		#
 */
 SquareArray TurquoiseVertical = { Square(0,0), Square(-1, 0),
 						   Square(0, 1), Square(1, 1) };
@@ -46,8 +45,8 @@ SquareInfo TurquoiseInfo = { &TurquoiseVertical, &TurquoiseHorizontal,
 							&TurquoiseVertical, &TurquoiseHorizontal };
 
 /*
-		#  #  #
-	#	#     #   #
+		#
+	#	#*
 	#
 */
 SquareArray GreenVertical = { Square(0,0), Square(-1, 0),
@@ -59,7 +58,7 @@ SquareInfo GreenInfo = { &GreenVertical, &GreenHorizontal,
 
 /*
 	 #
-  #  #   #
+  #  #*  #
 */
 SquareArray YellowNorth = { Square(0,0), Square(-1, 0),
 						   Square(0, 1), Square(0, -1) };
@@ -74,31 +73,33 @@ SquareInfo YellowInfo = { &YellowNorth, &YellowEast,
 
 /*
 		#
-#	#	#
+#	#*	#
 */
-SquareArray BlueNorth = { Square(0,0), Square(-1, 0),
-						   Square(0, -1), Square(0, -2) };
+SquareArray BlueNorth = { Square(0,0), Square(-1, 1),
+						   Square(0, 1), Square(0, -1) };
 SquareArray BlueEast = { Square(0,0), Square(-1, 0),
-						   Square(-2, 0), Square(0, 1) };
+						   Square(1, 0), Square(1, 1) };
 SquareArray BlueSouth = { Square(0,0), Square(0, 1),
-						   Square(0, 2), Square(1, 0) };
-SquareArray BlueWest = { Square(0,0), Square(1, 0),
-						   Square(2, 0), Square(0, -1) };
+						   Square(0, -1), Square(1, -1) };
+SquareArray BlueWest = { Square(0,0), Square(-1, 0),
+						   Square(-1, -1), Square(1, 0) };
 SquareInfo BlueInfo = { &BlueNorth, &BlueEast,
 					  &BlueSouth, &BlueWest };
 
 /*
 #
-#	#	#
+#	#*	#
 */
-SquareArray PurpleNorth = { Square(0,0), Square(-1, 0),
-						   Square(0, 1), Square(0, 2) };
-SquareArray PurpleEast = { Square(0,0), Square(0, 1),
-						   Square(1, 0), Square(2, 0) };
-SquareArray PurpleSouth = { Square(0,0), Square(1, 0),
-						   Square(0, -1), Square(0, -2) };
-SquareArray PurpleWest = { Square(0,0), Square(0, -1),
-						   Square(-1, 0), Square(-2, 0) };
+SquareArray PurpleNorth = { Square(0,0), Square(-1, -1),
+						   Square(0, -1), Square(0, 1) };
+SquareArray PurpleEast = { Square(0,0), Square(-1, 0),
+						   Square(-1, 1), Square(1, 0) };
+SquareArray PurpleSouth = { Square(0,0), Square(0, 1),
+						   Square(1, 1), Square(0, -1) };
+SquareArray PurpleWest = { Square(0,0), Square(-1, 0),
+						   Square(1, 0), Square(1, -1) };
 SquareInfo PurpleInfo = { &PurpleNorth, &PurpleEast,
 					  &PurpleSouth, &PurpleWest };
+
+
 

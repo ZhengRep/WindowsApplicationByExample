@@ -8,7 +8,7 @@ Figure::Figure()
 }
 
 Figure::Figure(int iDerection, COLORREF rfColor, const SquareInfo& squareInfo)
-    :m_iRow(0),
+    :m_iRow(1),
     m_iCol(COLS / 2),
     m_iDirection(iDerection),
     m_rfColor(rfColor)
@@ -29,7 +29,7 @@ Figure Figure::operator=(const Figure& figure)
 
 BOOL Figure::IsSquareValid(int iRow, int iCol) const
 {
-    return (iRow >= -2 && iRow < ROWS) && (iCol >= 0 && iCol < COLS) && (m_pColorGrid->Index(iRow, iCol) == DEFAULT_COLOR);
+    return (iRow >= 0 && iRow < ROWS) && (iCol >= 0 && iCol < COLS) && (m_pColorGrid->Index(iRow, iCol) == DEFAULT_COLOR);
 }
 
 BOOL Figure::IsFigureValid() const
