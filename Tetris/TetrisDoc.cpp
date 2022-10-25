@@ -295,7 +295,12 @@ BOOL CTetrisDoc::NewGame()
 //return rank
 int CTetrisDoc::AddScoreToList()
 {
- 	m_iScore = 2;
+	// 2
+	// 3 -> 3 2
+	// 1 -> 3 2 1
+	// 0 -> 3 2 1 0
+	// 5 -> 5 3 2 1
+	// 4 -> 5 4 3 2 
 	int size = static_cast<int>(m_scoreList->GetCount());
 	//sorted insert value
 	if (size == 0) {
@@ -303,14 +308,23 @@ int CTetrisDoc::AddScoreToList()
 		return 1;
 	}
 	POSITION pos = m_scoreList->GetHeadPosition();
+	POSITION posPre = m_scoreList->GetHeadPosition();
+	int lastValue;
 	int hisScore;
 	int index;
-	if (size < 4) { //top 4 and is not full
+	if (size < 10) { //top 4 and is not full
 		for (index = 1; index <= size; index++)
 		{
+			if (index != 1) lastValue = m_scoreList->GetNext(posPre);
 			hisScore = m_scoreList->GetNext(pos);
 			if (hisScore < m_iScore) {
-				m_scoreList->InsertBefore(pos, m_iScore);
+				if (index == 1) {
+					m_scoreList->AddHead(m_iScore);
+				}
+				else {
+					//swap before
+					m_scoreList->InsertAfter(m_scoreList->Find(lastValue), m_iScore);
+				}
 				return index;
 			}
 		}
@@ -320,9 +334,16 @@ int CTetrisDoc::AddScoreToList()
 	else { //is full
 		for (index = 1; index <= size; index++)
 		{
+			if (index != 1) lastValue = m_scoreList->GetNext(posPre);
 			hisScore = m_scoreList->GetNext(pos);
 			if (hisScore < m_iScore) {
-				m_scoreList->InsertBefore(pos, m_iScore);
+				if (index == 1) {
+					m_scoreList->AddHead(m_iScore);
+				}
+				else {
+					//swap before
+					m_scoreList->InsertAfter(m_scoreList->Find(lastValue), m_iScore);
+				}
 				m_scoreList->RemoveTail();
 				return index;
 			}

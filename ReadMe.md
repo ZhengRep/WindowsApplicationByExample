@@ -128,7 +128,7 @@ CRingDoc::~CRingDoc()
 
 该应用主要实现了一个俄罗斯方块的小游戏。
 
-![image-20221023202414671](ReadMe.assets/image-20221023202414671.png)
+![image-20221025204535837](ReadMe.assets/image-20221025204535837.png)
 
 ### 实现
 
