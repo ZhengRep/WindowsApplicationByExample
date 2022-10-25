@@ -74,11 +74,11 @@ void CTetrisView::OnDraw(CDC* pDc /*pDC*/)
 	CPen pen(PS_SOLID, 0, BLACK);
 	CPen* pOldPen = pDc->SelectObject(&pen);
 	pDc->MoveTo(COLS * g_iColWidth, 0);
-	pDc->MoveTo(COLS * g_iColWidth, ROWS * g_iRowHeight);
+	pDc->LineTo(COLS * g_iColWidth, ROWS * g_iRowHeight);
 
 	DrawGrid(pDc);
-	DrawScoreAndScoreList(pDc);
 	DrawActiveAndNextFigure(pDc);
+	DrawScoreAndScoreList(pDc);
 	pDc->SelectObject(&pOldPen);
 }
 
@@ -221,12 +221,30 @@ void CTetrisView::DrawGrid(CDC* pDC)
 
 void CTetrisView::DrawScoreAndScoreList(CDC* pDC)
 {
-	CPoint ptOrigin(-COLS * g_iColWidth, -6 * g_iRowHeight);
-	pDC->SetWindowOrg(ptOrigin);
+	CString scoreStr;
+	scoreStr.Format(_T("Score: %d"), m_pTetrisDoc->GetScore());
+	pDC->TextOut(10, 100, scoreStr);
 
-	pDC->TextOutW(10, 10, _T("Score:"));
-	pDC->TextOutW(10, 10, _T("10"));
+	CString hisScoreStr;
+	hisScoreStr.Format(_T("Top 10 score:"));
+	CString tempStr;
+	const IntList* scoreList = m_pTetrisDoc->GetScoreList();
+	POSITION pos = scoreList->GetHeadPosition();
+	int size = static_cast<int>(scoreList->GetCount());
+	if (size != 0) {
+		int len = hisScoreStr.GetLength();
+		for (int i = 0; i < size; i++)
+		{
+			int score = scoreList->GetNext(pos);
+			tempStr.Format(_T("%d  "), score);
+			len = hisScoreStr.Insert(len, tempStr);
+		}
+	}
+	else {
+		hisScoreStr.Insert(hisScoreStr.GetLength(), _T("None"));
+	}
 
+	pDC->TextOut(10, 200, hisScoreStr);
 	
 }
 

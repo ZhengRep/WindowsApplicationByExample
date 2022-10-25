@@ -55,11 +55,10 @@ public:
 
 	int GetScore() const { return m_iScore; };
 
-	const IntList* GetScoreList() { return &m_scoreList; };
-	const ColorGrid* GetGrid() { return &m_colorGrid; };
-
+	const IntList* GetScoreList() { return m_scoreList; };
 	const Figure& GetActiveFigure() const { return m_activeFigure; };
 	const Figure& GetNextFigure() const { return m_nextFigure; };
+	const ColorGrid* GetGrid() const { return &m_colorGrid; };
 
 public:
 	void LeftArrowKey();
@@ -79,8 +78,8 @@ private:
 	void DeleteRow(int iDeleteRow);
 
 private:
+	IntList* m_scoreList; //record top 10 score
 	int m_iScore;
-	IntList m_scoreList; //record top 10 score
 	ColorGrid m_colorGrid;
 	Figure m_activeFigure, m_nextFigure;
 	const CRect NEXT_AREA, SCORE_AREA;
