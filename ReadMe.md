@@ -248,5 +248,3 @@ SquareInfo PurpleInfo = { &PurpleNorth, &PurpleEast,
 
 
 ```
-
-4. 还未完成计分，分数显示，开始新游戏

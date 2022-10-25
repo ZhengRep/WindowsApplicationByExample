@@ -1,0 +1,18 @@
+﻿  pch.cpp
+  ClassView.cpp
+  ColorGrid.cpp
+  Figure.cpp
+  FileView.cpp
+  MainFrm.cpp
+  OutputWnd.cpp
+  PropertiesWnd.cpp
+  Square.cpp
+  Tetris.cpp
+  TetrisDoc.cpp
+  TetrisView.cpp
+  ViewTree.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 724 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Tetris.vcxproj -> E:\Vstudio2019\WindowsApplicationByExample\x64\Release\Tetris.exe
