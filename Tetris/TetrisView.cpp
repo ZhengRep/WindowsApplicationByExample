@@ -221,6 +221,12 @@ void CTetrisView::DrawGrid(CDC* pDC)
 
 void CTetrisView::DrawScoreAndScoreList(CDC* pDC)
 {
+	CPoint ptOrigin(-COLS * g_iColWidth, -6 * g_iRowHeight);
+	pDC->SetWindowOrg(ptOrigin);
+
+	pDC->TextOutW(10, 10, _T("Score:"));
+	pDC->TextOutW(10, 10, _T("10"));
+
 	
 }
 

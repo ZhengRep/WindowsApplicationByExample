@@ -78,8 +78,6 @@ private:
 	void FlashRow(int iFlashRow);
 	void DeleteRow(int iDeleteRow);
 
-	void Serialize(CArchive& ar);
-
 private:
 	int m_iScore;
 	IntList m_scoreList; //record top 10 score

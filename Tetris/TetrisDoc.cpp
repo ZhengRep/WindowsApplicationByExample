@@ -45,10 +45,13 @@ CTetrisDoc::CTetrisDoc() noexcept
 {
 	// TODO: add one-time construction code here
 	//to load score list
+	m_iScore = 0;
 	m_activeFigure = m_figureArray[rand() % FIGURE_ARRAY_SIZE];
 	m_activeFigure.SetColorGrid(&m_colorGrid);
 
 	m_nextFigure = m_figureArray[rand() % FIGURE_ARRAY_SIZE];
+
+	LoadScoreList();
 }
 
 CTetrisDoc::~CTetrisDoc()
@@ -140,12 +143,22 @@ void CTetrisDoc::Dump(CDumpContext& dc) const
 
 void CTetrisDoc::SaveScoreList()
 {
-
+	CFile file;
+	file.Open(_T("TetrisHistoryScore.txt"), CFile::modeRead | CFile::modeWrite);
+	CArchive ar(&file, CArchive::store);
+	m_scoreList.Serialize(ar);
+	ar.Close();
+	file.Close();
 }
 
 void CTetrisDoc::LoadScoreList()
 {
-	
+	CFile file;
+	file.Open(_T("TetrisHistoryScore.txt"), CFile::modeRead | CFile::modeWrite);
+	CArchive ar(&file, CArchive::load);
+	m_scoreList.Serialize(ar);
+	ar.Close();
+	file.Close();
 }
 // CTetrisDoc commands
 
@@ -247,6 +260,8 @@ void CTetrisDoc::GameOver()
 		m_activeFigure = m_figureArray[rand() % FIGURE_ARRAY_SIZE];
 		m_activeFigure.SetColorGrid(&m_colorGrid);
 
+		m_iScore = 0;
+
 		m_nextFigure = m_figureArray[rand() % FIGURE_ARRAY_SIZE];
 		UpdateAllViews(NULL, COLOR);
 	}
@@ -266,7 +281,7 @@ BOOL CTetrisDoc::NewGame()
 	else {
 		showMsg.Format(TEXT("Current score is: %d.\n New game again?"), m_iScore);
 	}
-	if (MessageBox(NULL, showMsg, TEXT("Tetris"), MB_YESNO) == IDOK) return TRUE;
+	if (MessageBox(NULL, showMsg, TEXT("Tetris"), MB_YESNO) == IDYES) return TRUE;
 	return FALSE;
 }
 
@@ -274,14 +289,32 @@ BOOL CTetrisDoc::NewGame()
 //return rank
 int CTetrisDoc::AddScoreToList()
 {
-	int size = m_scoreList.GetCount();
-	int i;
-	if (size <= 2) { //to test
+	int size = static_cast<int>(m_scoreList.GetCount());
+	POSITION pos = m_scoreList.GetHeadPosition();
+	if (size < 2) { //to test
 		//sorted add to score list
+		for (int i = 1; i <= size; i++)
+		{
+			int hisScore = m_scoreList.GetNext(pos);
+			if (hisScore < m_iScore) {
+				m_scoreList.InsertBefore(pos, m_iScore);
+				return i;
+			}
+		}
+		m_scoreList.AddTail(m_iScore);
+		return size + 1;
 		
 	}
 	else {
-		
+		for (int i = 1; i <= size; i++)
+		{
+			int hisScore = m_scoreList.GetNext(pos);
+			if (hisScore < m_iScore) {
+				m_scoreList.SetAt(m_scoreList.FindIndex(hisScore), m_iScore);
+				return i;
+			}
+		}
+		return 0;
 	}
 }
 
@@ -321,7 +354,6 @@ void CTetrisDoc::FlashRow(int iFlashRow)
 		CRect rcRowArea2(0, iFlashRow, COLS, iFlashRow + 1);
 		UpdateAllViews(NULL, COLOR, (CObject*)&rcRowArea2);
 		Sleep(50);
-		
 	}
 }
 
@@ -342,6 +374,3 @@ void CTetrisDoc::DeleteRow(int iDeleteRow)
 	UpdateAllViews(NULL, COLOR, (CObject*)&rcArea);
 }
 
-void CTetrisDoc::Serialize(CArchive& ar)
-{
-}
