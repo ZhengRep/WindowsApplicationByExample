@@ -157,7 +157,6 @@ void CTetrisDoc::LoadScoreList()
 {
 	CFile file;
 	file.Open(_T("TetrisHistoryScore"), CFile::modeRead | CFile::modeNoTruncate | CFile::modeCreate);
-	int len = file.GetLength();
 	if (file.GetLength()) {
 		CArchive ar(&file, CArchive::load);
 		m_scoreList->Serialize(ar);
@@ -298,8 +297,38 @@ int CTetrisDoc::AddScoreToList()
 {
  	m_iScore = 2;
 	int size = static_cast<int>(m_scoreList->GetCount());
-
-
+	//sorted insert value
+	if (size == 0) {
+		m_scoreList->AddTail(m_iScore);
+		return 1;
+	}
+	POSITION pos = m_scoreList->GetHeadPosition();
+	int hisScore;
+	int index;
+	if (size < 4) { //top 4 and is not full
+		for (index = 1; index <= size; index++)
+		{
+			hisScore = m_scoreList->GetNext(pos);
+			if (hisScore < m_iScore) {
+				m_scoreList->InsertBefore(pos, m_iScore);
+				return index;
+			}
+		}
+		m_scoreList->AddTail(m_iScore);
+		return ++index;
+	}
+	else { //is full
+		for (index = 1; index <= size; index++)
+		{
+			hisScore = m_scoreList->GetNext(pos);
+			if (hisScore < m_iScore) {
+				m_scoreList->InsertBefore(pos, m_iScore);
+				m_scoreList->RemoveTail();
+				return index;
+			}
+		}
+		return 0;
+	}
 }
 
 void CTetrisDoc::DeleteFullRows()
