@@ -248,3 +248,7 @@ SquareInfo PurpleInfo = { &PurpleNorth, &PurpleEast,
 
 
 ```
+
+4. 未完成区域刷新，现在的是全局刷新，未完成的结束游戏时全局变暗
+
+## 
