@@ -277,6 +277,7 @@ void CTetrisDoc::GameOver()
 
 BOOL CTetrisDoc::NewGame()
 {
+
 	CString showMsg;
 	int rank;
 	if ((rank = AddScoreToList()) != 0) {

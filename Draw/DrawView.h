@@ -4,7 +4,6 @@
 
 #pragma once
 
-
 class CDrawView : public CScrollView
 {
 protected: // create from serialization only
