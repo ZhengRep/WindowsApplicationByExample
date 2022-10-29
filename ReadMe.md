@@ -249,6 +249,12 @@ SquareInfo PurpleInfo = { &PurpleNorth, &PurpleEast,
 
 ```
 
-4. 未完成区域刷新，现在的是全局刷新，结束游戏时ColorGrid全局变暗
+#### 待更新
 
-## 
+1. 未完成区域刷新
+2. 现在的是全局刷新
+3. 结束游戏时ColorGrid全局变暗
+4. 居中显示窗口
+
+## Draw
+
