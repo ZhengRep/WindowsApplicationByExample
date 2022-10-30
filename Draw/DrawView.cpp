@@ -61,6 +61,7 @@ void CDrawView::OnDraw(CDC* /*pDC*/)
 		return;
 
 	// TODO: add draw code for native data here
+
 }
 
 void CDrawView::OnInitialUpdate()
@@ -72,13 +73,7 @@ void CDrawView::OnInitialUpdate()
 	sizeTotal.cx = sizeTotal.cy = 100;
 	SetScrollSizes(MM_TEXT, sizeTotal);
 
-	//To test
-	List<int> list;
-	list.AddTail(1);
-	list.AddTail(2);
-	list.AddTail(3);
-	list.Remove(2);
-	int i = 1;
+	
 }
 
 
