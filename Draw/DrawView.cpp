@@ -61,7 +61,6 @@ void CDrawView::OnDraw(CDC* /*pDC*/)
 		return;
 
 	// TODO: add draw code for native data here
-
 }
 
 void CDrawView::OnInitialUpdate()
