@@ -2,8 +2,6 @@
 
 #include "Color.h"
 
-#define SQUARE_SIDE 10
-
 class Figure: public CObject
 {
 public:
@@ -30,5 +28,10 @@ public:
 private:
 	BOOL m_bMarked;
 	Color m_figureColor;
+
+protected:
+	static const int SQUARE_SIDE = 200; //200 logical units is equivalent to 200 hundredths of a millimeter  = 2 millimeter
 };
+
+typedef List<Figure*> FigurePointerList;
 

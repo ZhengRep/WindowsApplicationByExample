@@ -19,7 +19,7 @@ Color::Color()
  //how to implement?
  Color::operator COLORREF() const
 {
-	
+	 return m_crRedGreenBlue;
 }
 
  Color& Color::operator=(const Color& color)
