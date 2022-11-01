@@ -90,6 +90,12 @@
     <ClInclude Include="DrawView.h">
       <Filter>View</Filter>
     </ClInclude>
+    <ClInclude Include="LineFigure.h">
+      <Filter>Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="ArrowFigure.h">
+      <Filter>Figures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Draw.cpp">
@@ -145,6 +151,12 @@
     </ClCompile>
     <ClCompile Include="DrawView.cpp">
       <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="ArrowFigure.cpp">
+      <Filter>Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="LineFigure.cpp">
+      <Filter>Figures</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

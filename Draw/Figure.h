@@ -2,6 +2,8 @@
 
 #include "Color.h"
 
+#define SQUARE_SIDE 10
+
 class Figure: public CObject
 {
 public:
