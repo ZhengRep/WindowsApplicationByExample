@@ -2,7 +2,7 @@
 #include "Figure.h"
 #include "LineFigure.h"
 
-class ArrowFigure : public Figure, private LineFigure
-{
-};
+//class ArrowFigure : public Figure, private LineFigure
+//{
+//};
 

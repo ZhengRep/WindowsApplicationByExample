@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Font.h"
-
+/*
 Font::Font()
 {
 }
@@ -55,3 +55,4 @@ void Font::Serialize(CArchive& archive)
 		archive.Read(&m_logFont, sizeof m_logFont);
 	}
 }
+*/

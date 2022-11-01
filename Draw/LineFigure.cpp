@@ -69,7 +69,7 @@ BOOL LineFigure::Click(const CPoint& ptMouse)
 			int cyLine = ptMax.y - ptMin.y;
 			int cxMouse = ptMouse.x - ptMin.x;
 			int cyMouse = ptMouse.y - ptMin.y;
-			return fabs(cyMouse - cxMouse * (double)cyLine / cxLine <= dHalfSquareSide);
+			return fabs(cyMouse - cxMouse * (double)cyLine / cxLine) <= dHalfSquareSide;
 		}
 		return FALSE;
 	}
@@ -112,7 +112,7 @@ void LineFigure::Move(const CSize& szDistance)
 
 void LineFigure::Draw(CDC* pDC) const
 {
-	CPen pen(PS_SOLID, 0, GetColor());
+	//CPen pen(PS_SOLID, 0, GetColor());
 
 }
 

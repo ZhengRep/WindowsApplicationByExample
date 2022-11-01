@@ -10,8 +10,6 @@ public:
 	void Remove(T value);
 	List<T> FilterIf(BOOL Predicate(T value)) const;
 	int CountIf(BOOL Predicate(T value)) const;
-private:
-	CList<T> m_list;
 };
 
 

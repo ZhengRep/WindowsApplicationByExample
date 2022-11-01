@@ -1,5 +1,6 @@
 #pragma once
 
+/*
 typedef struct tagLOGFONT
 {
 	LONG lfHeight;
@@ -38,3 +39,4 @@ private:
 	LOGFONT m_logFont;
 };
 
+*/
