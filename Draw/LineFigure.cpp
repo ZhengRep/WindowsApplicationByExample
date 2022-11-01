@@ -1,5 +1,8 @@
 #include "pch.h"
 #include "LineFigure.h"
+#include "Color.h"
+
+static const DWORD dHalfSquareSide = SQUARE_SIDE / 2;
 
 LineFigure::LineFigure()
 {
@@ -37,7 +40,6 @@ HCURSOR LineFigure::GetCursor() const
 BOOL LineFigure::Click(const CPoint& ptMouse)
 {
 	//Did the user click on the first or last
-	DWORD dHalfSquareSide = SQUARE_SIDE / 2;
 	CRect rcFirst(m_ptFirst.x - dHalfSquareSide, m_ptFirst.y - dHalfSquareSide, m_ptFirst.x + dHalfSquareSide, m_ptFirst.y + dHalfSquareSide);
 
 	if (rcFirst.PtInRect(ptMouse)) {
@@ -112,11 +114,34 @@ void LineFigure::Move(const CSize& szDistance)
 
 void LineFigure::Draw(CDC* pDC) const
 {
-	//CPen pen(PS_SOLID, 0, GetColor());
+	CPen pen(PS_SOLID, 0, (COLORREF)GetColor()); //Is it suitable?
+	CPen* pOldPen = pDC->SelectObject(&pen);
+	pDC->MoveTo(m_ptFirst.x, m_ptFirst.y);
+	pDC->LineTo(m_ptLast.x, m_ptLast.y);
+	pDC->SelectObject(pOldPen);
+	if (IsMarked) {
+		CPen pen(PS_SOLID, 0, BLACK);
+		CBrush brush(BLACK);
+		CBrush* pOldBrush = pDC->SelectObject(&brush);
+		CRect rcFirst(m_ptFirst.x - dHalfSquareSide, m_ptFirst.y - dHalfSquareSide, m_ptFirst.x + dHalfSquareSide, m_ptFirst.y + dHalfSquareSide);
+		pDC->Rectangle(rcFirst);
+		CRect rcLast(m_ptLast.x - dHalfSquareSide, m_ptLast.y - dHalfSquareSide, m_ptLast.x + dHalfSquareSide, m_ptLast.y + dHalfSquareSide);
+		pDC->Rectangle(rcLast);
+		pDC->SelectObject(pOldBrush);
+	}
+
 
 }
 
 CRect LineFigure::GetArea() const
 {
-	return CRect();
+	CRect rcLine(m_ptFirst, m_ptLast);
+	rcLine.NormalizeRect();
+	if (IsMarked) { //what is marked?
+		rcLine.left -= dHalfSquareSide;
+		rcLine.top -= dHalfSquareSide;
+		rcLine.right += dHalfSquareSide;
+		rcLine.bottom -= dHalfSquareSide;
+	}
+	return rcLine;
 }

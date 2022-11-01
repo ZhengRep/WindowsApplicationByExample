@@ -1,5 +1,4 @@
 #pragma once
-
 /*
 typedef struct tagLOGFONT
 {
@@ -18,7 +17,9 @@ typedef struct tagLOGFONT
 	BYTE lfPitchAndFamily;
 	TCHAR lfFacceName[LF_FACESIZE];
 }LOGFONT, *PLOGFONT;
+*/
 
+/*
 class Font
 {
 public:

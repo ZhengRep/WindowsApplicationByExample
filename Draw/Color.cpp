@@ -17,10 +17,10 @@ Color::Color()
 }
 
  //how to implement?
- /*Color::operator COLORREF() const
+ Color::operator COLORREF() const
 {
-
-}*/
+	
+}
 
  Color& Color::operator=(const Color& color)
 {

@@ -9,5 +9,9 @@
 
 // add headers that you want to pre-compile here
 #include "framework.h"
+#include "Color.h"
+#include "Caret.h"
+#include "List.h"
+#include "Font.h"
 
 #endif //PCH_H

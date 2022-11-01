@@ -1,14 +1,16 @@
 #include "pch.h"
 #include "Font.h"
+
 /*
 Font::Font()
 {
+	memset(&m_logFont, 0, sizeof m_logFont);
 }
 
 Font::Font(CString stName, int iSize)
 {
 	memset(&m_logFont, 0, sizeof m_logFont);
-	wcscpy_s(m_logFont.lfFacceName, stName);
+	wcscpy_s(m_logFont.lfFaceName, stName);
 	m_logFont.lfWeight = iSize;
 }
 
