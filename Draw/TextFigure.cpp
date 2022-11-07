@@ -81,9 +81,54 @@ void TextFigure::Move(const CSize& szDistance)
 {
 }
 
-BOOL TextFigure::KeyDown(UINT uChar, CDC* pDC, KeyboardState eKeyboardState)
+BOOL TextFigure::KeyDown(UINT uChar, CDC* pDC)
 {
-    return 0;
+    int iLength = m_stText.GetLength();
+    switch (uChar)
+    {
+    case VK_HOME:
+        if (m_iEditIndex > 0) {
+            m_iEditIndex = 0;
+        }
+        break;
+    case VK_END:
+        if (m_iEditIndex < iLength) {
+            m_iEditIndex = iLength;
+        }
+        break;
+    case VK_LEFT:
+        if (m_iEditIndex > 0) {
+            m_iEditIndex--;
+        }
+        break;
+    case VK_RIGHT:
+        if (m_iEditIndex < iLength) {
+            m_iEditIndex++;
+        }
+        break;
+        //...
+    }
+    return FALSE;
+}
+
+BOOL TextFigure::CharDown(UINT uChar, CDC* pDC, KeyboardState eKeyboardState)
+{
+    if (m_iEditIndex == m_stText.GetLength()) {
+        m_stText.AppendChar(uChar);
+    }
+    else {
+        switch (eKeyboardState)
+        {
+        case KS_INSERT:
+            m_stText.Insert(m_iEditIndex, uChar);
+            break;
+        case KS_OVERWRITE:
+            m_stText.SetAt(m_iEditIndex, uChar);
+            break;
+        }
+    }
+    ++m_iEditIndex;
+    GenerateCaretArray(pDC);
 }
 
 void TextFigure::SetPreviousText(CDC* pDC)
@@ -92,11 +137,50 @@ void TextFigure::SetPreviousText(CDC* pDC)
 
 void TextFigure::Draw(CDC* pDC) const
 {
+    CFont cFont;
+    cFont.CreatePointFontIndirect(m_font.PointsToMeters());
+    CFont* pPreFont = pDC->SelectObject(&cFont); 
+    pDC->SetTextColor((COLORREF)GetColor());
+    pDC->TextOutW(m_ptText.x, m_ptText.y + m_szText.cy, m_stText);
+    pDC->SelectObject(pPreFont);
+    if (IsMarked()) {
+        CPen pen(PS_SOLID, 0, BLACK);
+        CPen* pOldPen = pDC->SelectObject(&pen);
+        CBrush brush(BLACK);
+        CBrush* pOldBrush = pDC->SelectObject(&brush);
+        int xLeft = m_ptText.x;
+        int xRight = m_ptText.x + m_szText.cx;
+        int yTop = m_ptText.y;
+        int yBottom = m_ptText.y + m_szText.cy;
+        int xCenter = m_ptText.x + m_szText.cx / 2;
+        int yCenter = m_ptText.y + m_szText.cy / 2;
+        DWORD dHalfSquareSide = SQUARE_SIDE / 2;
+        CRect rcLeft(xLeft - dHalfSquareSide, yCenter - dHalfSquareSide, xLeft + dHalfSquareSide, yCenter + dHalfSquareSide);
+        CRect rcRight(xRight - dHalfSquareSide, yCenter - dHalfSquareSide, xRight + dHalfSquareSide, yCenter + dHalfSquareSide);
+        CRect rcTop(xCenter - dHalfSquareSide, yTop - dHalfSquareSide, xCenter + dHalfSquareSide, yTop + dHalfSquareSide);
+        CRect rcBottom(xCenter - dHalfSquareSide, yBottom - dHalfSquareSide, xCenter + dHalfSquareSide, yBottom + dHalfSquareSide);
+        pDC->Rectangle(rcLeft);
+        pDC->Rectangle(rcRight);
+        pDC->Rectangle(rcTop);
+        pDC->Rectangle(rcBottom);
+
+        pDC->SelectObject(pOldPen);
+        pDC->SelectObject(pOldBrush);
+    }
 }
 
 CRect TextFigure::GetArea() const
 {
-    return CRect();
+    CRect rcText(m_ptText, m_szText);
+    rcText.NormalizeRect();
+    if (IsMarked()) {
+        DWORD dHalfSquareSide = SQUARE_SIDE / 2;
+        rcText.left -= dHalfSquareSide;
+        rcText.right += dHalfSquareSide;
+        rcText.top -= dHalfSquareSide;
+        rcText.bottom += dHalfSquareSide;
+    }
+    return rcText;
 }
 
 Font* TextFigure::GetFont()

@@ -96,6 +96,9 @@
     <ClInclude Include="ArrowFigure.h">
       <Filter>Figures</Filter>
     </ClInclude>
+    <ClInclude Include="EllipseFigure.h">
+      <Filter>Figures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Draw.cpp">
@@ -156,6 +159,9 @@
       <Filter>Figures</Filter>
     </ClCompile>
     <ClCompile Include="LineFigure.cpp">
+      <Filter>Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="EllipseFigure.cpp">
       <Filter>Figures</Filter>
     </ClCompile>
   </ItemGroup>

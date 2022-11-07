@@ -19,7 +19,7 @@ typedef struct tagLOGFONT
 }LOGFONT, *PLOGFONT;
 */
 
-/*
+
 class Font
 {
 public:
@@ -40,4 +40,3 @@ private:
 	LOGFONT m_logFont;
 };
 
-*/
