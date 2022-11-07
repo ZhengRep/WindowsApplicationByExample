@@ -190,14 +190,54 @@ Font* TextFigure::GetFont()
 
 void TextFigure::SetFont(const Font& font, CDC* pDC)
 {
+    m_font = font;
+    GenerateCaretArray(pDC);
 }
 
 void TextFigure::GenerateCaretArray(CDC* pDC)
 {
+    CFont cFont;
+    cFont.CreatePointFontIndirect(m_font.PointsToMeters());
+    CFont* pPrevFont = pDC->SelectObject(&cFont);
+    TEXTMETRIC textMetric;
+    pDC->GetTextMetrics(&textMetric);
+    m_iAverageWidth = textMetric.tmAveCharWidth;
+    if (!m_stText.IsEmpty()) {
+        m_szText = pDC->GetTextExtent(m_stText);
+    }
+    else {
+        m_szText.SetSize(0, textMetric.tmHeight);
+    }
+    int iWidth = 0, iSize = m_stText.GetLength();
+    m_caretArray.SetSize(iSize + 1);
+    for (int iIndex = 0; iIndex < iSize; ++iIndex)
+    {
+        CSize szChar = pDC->GetTextExtent(m_stText.Mid(iIndex, 1));
+        m_caretArray[iIndex] = iWidth;
+        iWidth = +szChar.cx;
+    }
+    m_caretArray[iSize] = iWidth;
+    pDC->SelectObject(pPrevFont);
 }
 
 CRect TextFigure::GetCaretArray(KeyboardState eKeyboardState)
 {
+    CPoint ptCaret(m_ptText.x + m_caretArray[m_iEditIndex], m_ptText.y);
+    switch (eKeyboardState)
+    {
+    case KS_INSERT:
+    {
+        CSize szCaret(1, m_szText.cy);
+        return CRect(ptCaret, ptCaret + szCaret);
+    }
+    break;
+    case KS_OVERWRITE:
+    {
+        CSize szCaret(m_iAverageWidth, m_szText.cy);
+        return CRect(ptCaret, ptCaret + szCaret);
+    }
+    break;
+    }
     return CRect();
 }
 
