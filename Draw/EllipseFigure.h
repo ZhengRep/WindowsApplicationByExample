@@ -20,7 +20,7 @@ public:
 	CRect GetArea() const { return RectangleFigure::GetArea(); };
 
 private:
-	enum {CREATE_ELLIPSE, MODIFY_LEFT, MODIFY_RIGHT, MODIFY_TOP, MODIFY_TOP, MODIFY_BOTTOM, 
+	enum {CREATE_ELLIPSE, MODIFY_LEFT, MODIFY_RIGHT, MODIFY_TOP, MODIFY_BOTTOM, 
 	MOVE_ELLIPSE} m_eDragMode;
 };
 

@@ -25,6 +25,9 @@
     <Filter Include="View">
       <UniqueIdentifier>{74ce9822-4980-4dd2-bd3d-03061e519030}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{f8229727-c01a-432d-9861-d1887c36d9ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Draw.h">
@@ -99,6 +102,9 @@
     <ClInclude Include="EllipseFigure.h">
       <Filter>Figures</Filter>
     </ClInclude>
+    <ClInclude Include="FigureFileManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Draw.cpp">
@@ -163,6 +169,9 @@
     </ClCompile>
     <ClCompile Include="EllipseFigure.cpp">
       <Filter>Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="FigureFileManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

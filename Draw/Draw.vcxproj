@@ -192,6 +192,7 @@
     <ClInclude Include="DrawView.h" />
     <ClInclude Include="EllipseFigure.h" />
     <ClInclude Include="Figure.h" />
+    <ClInclude Include="FigureFileManager.h" />
     <ClInclude Include="FileView.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="framework.h" />
@@ -218,6 +219,7 @@
     <ClCompile Include="DrawView.cpp" />
     <ClCompile Include="EllipseFigure.cpp" />
     <ClCompile Include="Figure.cpp" />
+    <ClCompile Include="FigureFileManager.cpp" />
     <ClCompile Include="FileView.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="LineFigure.cpp" />
