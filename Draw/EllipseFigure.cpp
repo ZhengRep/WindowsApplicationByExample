@@ -38,7 +38,7 @@ BOOL EllipseFigure::Click(const CPoint& ptMouse)
 		m_eDragMode = MODIFY_TOP;
 		return TRUE;
 	}
-	CRect rcRight(m_ptBottomRight.x - dHalfSquareSide, yCenter - dHalfSquareSide, m_ptBottomRight + dHalfSquareSide, yCenter + dHalfSquareSide);
+	CRect rcRight(m_ptBottomRight.x - dHalfSquareSide, yCenter - dHalfSquareSide, m_ptBottomRight.x + dHalfSquareSide, yCenter + dHalfSquareSide);
 	if (rcRight.PtInRect(ptMouse)) {
 		m_eDragMode = MODIFY_RIGHT;
 		return TRUE;

@@ -24,7 +24,7 @@ public:
 	void Draw(CDC* pDC) const;
 	CRect GetArea() const;
 	Font* GetFont();
-	void SetFont(const Font& font, CDC* pDC);
+	void SetFont(const MyFont& font, CDC* pDC);
 
 private:
 	void GenerateCaretArray(CDC* pDC);
@@ -39,7 +39,7 @@ private:
 	CSize m_szText;
 	CString m_stText, m_stPreviousText;
 	int m_iAverageWidth;
-	Font m_font;
+	MyFont m_font;
 	int m_iEditIndex;
 	IntArray m_caretArray;
 };

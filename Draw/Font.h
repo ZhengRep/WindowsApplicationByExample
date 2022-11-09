@@ -1,5 +1,6 @@
 #pragma once
 
+/*
 typedef struct tagLOGFONT
 {
 	LONG lfHeight;
@@ -17,23 +18,23 @@ typedef struct tagLOGFONT
 	BYTE lfPitchAndFamily;
 	TCHAR lfFacceName[LF_FACESIZE];
 }LOGFONT, *PLOGFONT;
+*/
 
 
 
-
-class Font
+class MyFont
 {
 public:
-	Font();
-	Font(CString stName, int iSize);
-	Font(const LOGFONT& logFont);
-	Font(const Font& font);
+	MyFont();
+	MyFont(CString stName, int iSize);
+	MyFont(const LOGFONT& logFont);
+	MyFont(const MyFont& font);
 	operator LOGFONT() { return m_logFont; };
 	operator PLOGFONT() { return &m_logFont; };
-	Font PointsToMeters() const;
-	Font& operator=(const Font& font);
-	BOOL operator==(const Font& font) const;
-	BOOL operator!=(const Font& font) const;
+	MyFont PointsToMeters() const;
+	MyFont& operator=(const MyFont& font);
+	BOOL operator==(const MyFont& font) const;
+	BOOL operator!=(const MyFont& font) const;
 	void Serialize(CArchive& archive);
 	BOOL IsItalic() const { return m_logFont.lfItalic; };
 

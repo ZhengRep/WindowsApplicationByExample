@@ -57,7 +57,7 @@ BOOL RectangleFigure::Click(const CPoint& ptMouse)
 
 	CRect rcArea(m_ptTopLeft, m_ptBottomRight);
 	rcArea.NormalizeRect();
-	if (IsFilled) {
+	if (IsFilled()) {
 		m_eDragMode = MOVE_RECTANGLE;
 		return rcArea.PtInRect(ptMouse);
 	}

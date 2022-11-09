@@ -129,6 +129,7 @@ BOOL TextFigure::CharDown(UINT uChar, CDC* pDC, KeyboardState eKeyboardState)
     }
     ++m_iEditIndex;
     GenerateCaretArray(pDC);
+    return TRUE;//??
 }
 
 void TextFigure::SetPreviousText(CDC* pDC)
@@ -188,7 +189,7 @@ Font* TextFigure::GetFont()
     return nullptr;
 }
 
-void TextFigure::SetFont(const Font& font, CDC* pDC)
+void TextFigure::SetFont(const MyFont& font, CDC* pDC)
 {
     m_font = font;
     GenerateCaretArray(pDC);
